@@ -26,7 +26,7 @@ O diferencial: a **política do campus** faz parte do jogo. A reputação com as
 ### Combate
 - **Ataque básico:** rápido e de pouco dano.
 - **Ataque pesado:** lento e de dano alto.
-- **Especial:** usa uma barra que carrega devagar (com o tempo e/ou com o dano causado). Só pode ser usado com a barra cheia.
+- **Especial:** usa uma barra que carrega devagar com o tempo e mais rápido com o dano causado. Só pode ser usado com a barra cheia.
 - **Dash:** esquiva curta com invencibilidade breve e recarga.
 - **Combos:** sequências simples aumentam o dano somado. Exemplo: `básico → básico → pesado` termina num golpe final com bônus. A lista de combos fica num arquivo de dados para ser fácil de ajustar.
 - Sem magia por enquanto.
@@ -139,4 +139,3 @@ Um reino completo, o **CCT**:
 - Mercados do CCS e do CCG: o que vendem.
 - Quantos finais existem e o que define cada um.
 - Nomes finais das moedas.
-- Como a barra do especial carrega: por tempo, por dano causado ou pelos dois.

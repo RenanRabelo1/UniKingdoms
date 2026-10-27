@@ -49,6 +49,7 @@ tests/                # testes GUT
 ## Conventions
 
 - **Code naming:** `snake_case` para arquivos, funções e variáveis; `PascalCase` para `class_name` e nós; `UPPER_SNAKE` para constantes (guia oficial do GDScript).
+- **Onde ficam os scripts:** script de cena fica ao lado da `.tscn` (ex.: `scenes/player/player.gd`); lógica pura e classes de dados ficam em `scripts/` (ex.: `scripts/combat/`).
 - **State machines:** state machine por nós para player, inimigos e bosses.
 - **Data-driven:** itens, combos, ensinamentos, inimigos, moedas e facções são `Resource` (`.tres`) em `data/`. Adicionar conteúdo não deve exigir mexer em código.
 - **Estado global:** apenas em autoloads (`GameState`, `SaveManager`, `Economy`, `Reputation`), criados quando um milestone precisar. Comunicação entre sistemas por sinais ou pelo autoload `Events` (sinais `dominio_acao`).
