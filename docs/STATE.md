@@ -33,5 +33,5 @@ none
 ## Notes for next session
 
 - O editor do Godot pode estar aberto enquanto você edita arquivos. Se mexer em `project.godot` (Input Map, autoloads), avise o usuário para usar *Projeto → Recarregar Projeto Atual*, senão o editor pode sobrescrever as mudanças.
-- O projeto ainda não é um repositório git. Pergunte ao usuário antes de inicializar.
+- Repositório git local (branch `main`, sem remote). O commit inicial do scaffold é `ae5434b`.
 - A pasta pai `G/` só contém este projeto.
