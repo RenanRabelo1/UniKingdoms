@@ -42,12 +42,14 @@ Leia no início da sessão. **Não** edite sem confirmação do usuário.
 
 ## Architecture rules
 
-- **Autoloads só para estado global e eventos.** `Events` (barramento de sinais, nomes `dominio_acao`) e singletons de estado (`GameState`, `SaveManager`, `Economy`, `Reputation`), criados conforme os milestones precisarem. Nós de gameplay não se referenciam diretamente entre sistemas: usam sinais ou `Events`.
+- **Um autoload: `GameState`.** Ele guarda perfil, run, economia, reputação e save, e emite os sinais globais (`enemy_killed`, `bits_changed`, `items_changed`, `notice`). Os sistemas se falam por sinais.
 - **Conteúdo é dado.** Itens, combos, ensinamentos, inimigos, moedas e facções são `Resource`s (`.tres`) em `data/`. Adicionar conteúdo não exige mudar código.
 - **Constantes centralizadas.** Números de tuning (velocidades, tempos, dano base) vão em `scripts/constants.gd` (`class_name Constants`) ou nos `Resource`s de dados, nunca soltos na lógica.
-- **State machine por nós** para player, inimigos e bosses.
+- **IA com `enum` + `match`** nos scripts de inimigo e chefe.
 - **Input:** ações nomeadas no Input Map (`move_*`, `attack_basic`, `attack_heavy`, `special`, `dash`, `interact`). Gameplay lê ações em `_unhandled_input`/`Input`, nunca teclas cruas.
-- **Inspeção por agente:** o `GameState` expõe `state_to_text() -> String` com um JSON do estado atual, para verificação sem screenshot.
+- **Inspeção por agente:** `GameState.state_to_text()` devolve um JSON do estado.
+- **UI do mundo nunca bloqueia o mouse:** use `UI.ignore_mouse()` em HUD/placas. Telas modais (`Screens`) pausam a árvore.
+- **Assets Tiny Swords** ficam na raiz e fora do git; animações via `SheetFrames.build()`.
 - **Testes:** toda lógica pura (combos, dano, economia, reputação, save) tem teste GUT em `tests/` escrito antes da implementação.
 
 ## Stack-specific commands
@@ -58,7 +60,8 @@ Execute a partir da raiz do projeto (`uni-king-dooms/`). `GODOT` = `"C:\Program 
 - **Smoke de boot (headless):** `GODOT --headless --path . --quit-after 60`
 - **Importar assets (headless):** `GODOT --headless --path . --import`
 - **Tests:** `GODOT --headless --path . -s addons/gut/gut_cmdln.gd -gconfig=res://.gutconfig.json`
-- **Build:** export Windows pelo editor (preset a criar)
+- **Autoplay ponta a ponta:** `GODOT --headless --path . -s tests/tools/autoplay.gd`
+- **Build:** `GODOT --headless --path . --export-release "Windows Desktop" builds/ReinosDaUnifor.exe`
 - **Lint / format:** n/a
 
 ## Live iterate (after every code change)
@@ -89,4 +92,4 @@ Se o usuário reclamar da documentação: milestone de uma linha é aceitável, 
 
 ## Last regenerated
 
-2026-10-27 by Claude / make-game scaffold
+2026-10-27 by Claude / v1.0 (make-game + cerebro-loop)

@@ -2,35 +2,39 @@
 
 ## Last updated
 
-2026-10-27 by Claude / make-game + cerebro-loop
+2026-10-27 by Claude / make-game + cerebro-loop + cerebro-kernel + ponytail
 
 ## Current phase
 
-development
+development, com a v1.0 entregue para os testes finais do usuário
 
 ## Current milestone
 
-[Milestone 02: Inimigos e vida](milestones/02-inimigos-e-vida.md), planejado e sem código ainda.
+[Milestone 03: v1.0, reino do CCT completo](milestones/03-v1-mvp-cct.md). C1–C9 verificados; falta C10 (playtest do usuário).
 
 ## Last action
 
-- Milestone 01 fechado.
-- No playtest, o ataque com mouse não funcionava. Causa: o `ColorRect` de fundo da arena (mouse_filter STOP) consumia os cliques antes do `_unhandled_input` do player. Correção em `06a4b89`: o fundo virou a clear color do projeto, a barra do especial ignora o mouse e há um teste de regressão (nenhum Control da arena bloqueia o mouse). Confirmado com clique simulado numa janela real: antes falhava, depois funciona.
-- Planejamento: o usuário escolheu o M02 (Inimigos e vida). M03 (Run de salas) e M04 (Recompensas) estão em `docs/backlog.md`.
+A v1.0 foi implementada inteira:
+- menu, customização, campus/hub, run de 12 salas, 4 inimigos e chefe;
+- ensinamentos, Bits, mercados, itens, relíquias, atlética e save/continuar;
+- sprites e UI do Tiny Swords;
+- export Windows em `builds/`.
+
+Verificado com 52 testes GUT, autoplay ponta a ponta, capturas de tela, clique em janela real e boot do `.exe`.
 
 ## Next step
 
-Rodar o cerebro-loop do M02: T01, escrever os testes B1–B5 falhando.
+O usuário faz o playtest final seguindo o roteiro da nota do Obsidian `02-Projetos/Ativos/Reinos da Unifor - Entrega v1.md`. Ajustar o balanceamento (`data/`, `scripts/constants.gd`, `scenes/run/room.gd`) com o feedback.
 
 ## Blockers
 
-none
+Nenhum para a v1. Áudio e fonte dependem de assets do usuário (não bloqueiam).
 
 ## Notes for next session
 
-- Em headless a GUI não faz picking de mouse. Para checar input de mouse de verdade, rode o script sem `--headless` (`root.push_input` numa janela real).
-- Toda `Control` nova na arena precisa de `mouse_filter = IGNORE`, senão engole os cliques (o teste `test_no_control_in_arena_swallows_mouse` pega isso).
-- O estado do cerebro-loop do M01 fica em `.specs/loop/m01-player-combate/STATE.json`. Para o M02, rode `orchestrator.mjs init m02-inimigos-vida large`.
-- Skills obrigatórias: cerebro-kernel, ponytail, cerebro-loop, make-game e as skills de Godot em `G/.claude/skills/`.
-- O autoload `GameState` com `state_to_text()` entra no M03.
-- Se mexer em `project.godot` com o editor aberto, peça para usar *Projeto → Recarregar Projeto Atual*.
+- O editor do Godot estava aberto durante o desenvolvimento. Antes do F5, use *Projeto → Recarregar Projeto Atual*: o `project.godot` mudou (autoload, input, cena principal, clear color).
+- Os packs `Tiny Swords/` e `Tiny Swords (Free Pack)/` ficam fora do git (licença), mas o jogo depende deles na raiz do projeto.
+- Scripts rodados com `-s` compilam antes dos autoloads: não use `class_name` que dependa do `GameState` neles (veja `tests/tools/autoplay.gd`).
+- Em headless a GUI não faz picking de mouse; para checar cliques, rode com janela.
+- Telas modais pausam a árvore. Testes que esperam durante a pausa precisam de `PROCESS_MODE_ALWAYS` (veja `tests/integration/test_flow.gd`).
+- O harness do cerebro-loop (`.specs/loop/v1-mvp-cct/STATE.json`) parou por orçamento de tempo (BUDGET_TIME_EXCEEDED). Os gates foram rodados manualmente (testes, autoplay, boot, capturas).

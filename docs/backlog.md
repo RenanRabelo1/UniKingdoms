@@ -1,37 +1,42 @@
 # Backlog
 
-Tudo que foi mencionado e adiado. Itens promovidos a milestone ganham ✔ e o link; itens rejeitados ficam riscados com o motivo.
+Tudo que foi mencionado e adiado. Itens promovidos ganham ✔ e o link; itens rejeitados ficam riscados com o motivo.
 
-## Próximos milestones (ordem combinada em 2026-10-27)
+## Promovidos
 
-- [ ] **M03: Run de salas.** Limpar a sala abre a porta e leva à próxima, a run termina e reinicia. Cria o autoload `GameState` com `state_to_text()`. *Depends on: M02.*
-- [ ] **M04: Recompensas da sala.** Ao limpar a sala, escolher 1 de 3 ensinamentos de um professor, ou ganhar Bits (moeda do CCT). *Depends on: M03.*
+- [x] ✔ M03 Run de salas, M04 Recompensas, mercado, relíquias, save, chefe, hub, atlética, customização e mais 2 inimigos → [Milestone 03 (v1)](milestones/03-v1-mvp-cct.md).
 
-## MVP do CCT (ainda sem milestone)
+## Próximas versões (fora da v1)
 
-- [ ] Mercado do CCT (caneta, jaleco, código penal, tecnologia), com moeda Bits.
-- [ ] Boss: professor-chefe do CCT, com state machine por nós e fases.
-- [ ] Relíquias permanentes + sala de coleção na Biblioteca.
-- [ ] Save no meio da run (por sala concluída) e progresso permanente.
-- [ ] Hub mínimo (Biblioteca) e trecho do campus com os reinos trancados.
-- [ ] Reputação com 1 atlética ativa no CCT e o mercado da facção.
-- [ ] Customização básica de aparência.
-- [ ] Mais 1 ou 2 inimigos do CCT para completar 3 ou 4 tipos.
+- [ ] Reinos CCS, CCG e CCJ (inimigos, professor-chefe, mercado e moeda de cada um).
+- [ ] Reitoria e O Chanceler (chefe final depois dos 4 reinos).
+- [ ] Eleições do centro acadêmico (missões em cadeia) e finais diferentes.
+- [ ] As outras 3 atléticas ativas; reputação negativa (hostil) e aliados que lutam junto.
+- [ ] Outras armas da run (só a Caneta na v1).
+- [ ] Customização além da cor (cabelo, acessórios).
+- [ ] Suporte a controle.
 
 ## Polish & juice
 
-- [ ] Knockback nos inimigos.
-- [ ] Sprites e animações reais no lugar dos placeholders. O plugin SpriteCook (catálogo) gera sprites e tem fluxo para Godot.
-- [ ] Sons (packs gratuitos).
-- [ ] Barra do especial com tema visível (o tema padrão é escuro demais).
+- [ ] Áudio: músicas e efeitos (precisa dos assets).
+- [ ] Fonte com identidade do jogo (precisa do arquivo).
+- [ ] Knockback e hit-stop nos inimigos.
+- [ ] Inimigos contornam árvores e pedras (hoje só deslizam).
+- [ ] Sprites próprios de professores, chefe e inimigos "de CCT" (hoje: monges, Lancer e goblins do Tiny Swords).
+- [ ] Ícone do executável.
 
-## Open questions
+## Balanceamento (depende do playtest)
 
-- Título definitivo.
-- Nomes e identidade das 4 atléticas, e quais são as mais hostis.
-- Professor-chefe do CCT: nome e fases.
-- Mercados do CCS e do CCG, nomes finais das moedas e quantidade de finais.
+- [ ] Uma vitória rende ~380 Bits e os itens custam 20–40; talvez seja generoso demais.
+- [ ] Dano/vida dos inimigos por sala (`hp_scale` +8%/sala, 3 + n inimigos) e vida do chefe (900).
+
+## Open questions (decisões do usuário)
+
+- Título definitivo (hoje "Reinos da Unifor").
+- Nomes da atlética do CCT ("Atlética Engrenagem" é provisório) e das outras 3.
+- Nomes dos professores (Profa. Lógica, Prof. Circuito, Profa. Prancheta) e do chefe (Prof. Mainframe), todos provisórios.
+- Nomes das moedas dos outros reinos e quantidade de finais.
 
 ## Riscos técnicos
 
-- As ações do Input Map foram escritas sem `"device": -1` (o editor usa -1). O teclado funcionou no playtest e o clique de mouse foi verificado com evento simulado numa janela real. Se algum dispositivo não responder, comece por aqui.
+- As ações do Input Map foram escritas sem `"device": -1`. Teclado e mouse foram verificados; se um dispositivo não responder, comece por aqui.

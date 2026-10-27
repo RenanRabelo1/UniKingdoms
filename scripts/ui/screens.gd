@@ -38,9 +38,14 @@ static func pause(parent: Node, on_resume: Callable) -> void:
 		close(center)
 		on_resume.call()
 	UI.button(col, "Continuar", resume)
-	var hint := "A run continua da sala atual." if GameState.has_run() else ""
+	var hint := "A run continua do início desta sala." if GameState.has_run() else ""
 	UI.button(col, "Salvar e sair para o menu", func() -> void:
-		GameState.save_game()
+		# Na run, o save é o da entrada na sala (+ compras): sair não guarda o que foi pego depois,
+		# senão dava para farmar a mesma sala saindo e voltando.
+		if GameState.has_run():
+			GameState.load_game()
+		else:
+			GameState.save_game()
 		GameState.go(GameState.SCENE_MENU))
 	if hint != "":
 		UI.label(col, hint, 14)

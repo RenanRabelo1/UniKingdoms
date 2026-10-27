@@ -105,16 +105,27 @@ Cada reino tem uma especialidade no mercado:
 - **Teclado + mouse:** WASD para andar e mira no mouse. Mapeamento provisório: botão esquerdo = básico, botão direito = pesado, Q = especial, Espaço = dash, E = interagir/usar item.
 - Suporte a controle fica para depois.
 
-## Escopo do MVP (v1)
+## Escopo do MVP (v1) — entregue em 2026-10-27
 
-Um reino completo, o **CCT**:
-- Hub mínimo: Biblioteca com sala de relíquias e um pedaço do campus com a entrada do CCT (os outros reinos aparecem trancados).
-- Área do CCT com mercado e um ponto de facção.
-- Uma run de 10 a 14 salas, com 3 ou 4 tipos de inimigos (robôs e bugs), salas de professor (ensinamentos), sala de mercado e o boss (professor-chefe do CCT).
-- Combate completo: básico, pesado, especial, dash e combos.
-- Moeda do CCT, relíquias permanentes e save no meio da run.
-- Sistema de reputação funcionando com pelo menos 1 atlética ativa no CCT.
-- Customização básica de aparência.
+Um reino completo, o **CCT**. O detalhe está em `docs/milestones/03-v1-mvp-cct.md`.
+
+- **Fluxo:** menu (Novo jogo com cor do uniforme / Continuar / Sair) → campus → Portão do CCT → 12 salas → chefe → tela de resultado → campus.
+- **Campus (hub):**
+  - Biblioteca com vitrine de relíquias, espelho (cor) e espantalho de treino;
+  - Lojinha do CCT;
+  - sede e mercado da Atlética Engrenagem;
+  - CCS, CCG, CCJ e Reitoria trancados.
+- **Run:** 12 salas; ensinamento na 1ª e em mais 2 sorteadas; mercado nas salas 5 e 9; Prof. Mainframe na 12ª.
+- **Inimigos:** Bug (corpo a corpo), Robô (dinamite), Barril (explode), membro da atlética (emboscadas). 3 + n por sala, vida +8% por sala, ondas de até 6.
+- **Economia:** Bits da run (perdidos na morte, guardados na vitória) e Bits do banco (lojas do campus, começa com 50). Missões pagam no banco.
+- **Itens:** Marmita do RU (cura 40), Power Bank (+50% especial), Código Penal (ensinamento aleatório), Jaleco (+25 vida máx na run). Comprados no campus vão para o estoque e persistem; comprados na run valem só na run.
+- **Ensinamentos:** 9 de 3 professores + 2 que entram no pool depois de conquistar o CCT.
+- **Relíquias:** 6 permanentes com bônus pequenos (8% de chance por sala de combate, garantida no chefe).
+- **Atlética:**
+  - reputação 0 → aliada com 50 (2 missões);
+  - aliada não embosca;
+  - o mercado dela dá 0,4% de desconto por ponto de reputação.
+- **Save:** automático ao entrar em cada sala, comprar e mudar o perfil.
 
 ## Anti-goals
 

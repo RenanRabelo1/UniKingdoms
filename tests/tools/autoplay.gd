@@ -71,12 +71,19 @@ func _death_run() -> void:
 func _continue_run() -> void:
 	gs.start_run()
 	gs.advance_room(80)
-	gs.go(gs.SCENE_MENU)
+	gs.go(gs.SCENE_ROOM)
+	await _wait(1.0)
+	gs.run.bits += 99  # pego depois de entrar na sala: não pode sobreviver ao "Salvar e sair"
+	current_scene.open_modal()
+	load("res://scripts/ui/screens.gd").pause(current_scene, func() -> void: pass)
+	_check(_press("Salvar e sair"), "pausa tem Salvar e sair")
 	await _wait(0.6)
+	_check(current_scene.name == "MainMenu", "sair da pausa vai ao menu")
 	_check(_press("Continuar"), "menu mostra Continuar com save")
 	await _wait(1.0)
 	_check(current_scene.name == "Room" and gs.run.room == 1, "continuar retoma a sala salva")
 	_check(current_scene.player.hp == 80, "continuar mantém a vida salva")
+	_check(gs.run.bits == 0, "Bits pegos depois de entrar na sala não voltam (sem farm)")
 	gs.end_run(false)
 
 
