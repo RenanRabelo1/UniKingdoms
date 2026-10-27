@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"bug"
+display_name = "Bug"
+kind = "chaser"
+max_hp = 30
+speed = 140.0
+damage = 8
+attack_range = 44.0
+windup = 0.35
+attack_cooldown = 1.0
+bits = 2
+animations = {"idle": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png", 192, 192, 0, 7, 10.0, true], "run": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png", 192, 192, 1, 6, 12.0, true], "attack": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png", 192, 192, 2, 6, 14.0, false]}

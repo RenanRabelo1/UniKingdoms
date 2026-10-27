@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"barril"
+display_name = "Barril"
+kind = "kamikaze"
+max_hp = 20
+speed = 170.0
+damage = 25
+attack_range = 50.0
+windup = 0.8
+attack_cooldown = 0.0
+bits = 3
+body_radius = 16.0
+sprite_offset = Vector2(0, -20)
+animations = {"idle": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Purple/Barrel_Purple.png", 128, 128, 0, 1, 1.0, true], "run": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Purple/Barrel_Purple.png", 128, 128, 4, 3, 8.0, true], "attack": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Purple/Barrel_Purple.png", 128, 128, 5, 1, 1.0, true, 2]}

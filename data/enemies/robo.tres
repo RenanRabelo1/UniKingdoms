@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/enemy_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"robo"
+display_name = "Robô"
+kind = "ranged"
+max_hp = 26
+speed = 100.0
+damage = 10
+attack_range = 260.0
+windup = 0.55
+attack_cooldown = 2.0
+projectile_speed = 320.0
+bits = 3
+animations = {"idle": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/TNT/Purple/TNT_Purple.png", 192, 192, 0, 6, 10.0, true], "run": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/TNT/Purple/TNT_Purple.png", 192, 192, 1, 6, 12.0, true], "attack": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/TNT/Purple/TNT_Purple.png", 192, 192, 2, 7, 12.0, false]}

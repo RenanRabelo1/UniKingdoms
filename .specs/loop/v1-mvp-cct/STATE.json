@@ -1,0 +1,35 @@
+{
+  "feature": "v1-mvp-cct",
+  "scope": "complex",
+  "config": {
+    "maxCycles": 6,
+    "maxTokens": 60000,
+    "maxTime": 3600000,
+    "maxParallelAgents": 5,
+    "maxHealAttempts": 3,
+    "skipDesign": false,
+    "skipTasks": false
+  },
+  "phase": "spec",
+  "cycle": 1,
+  "startTime": "2026-10-27T14:23:29.770Z",
+  "budgetUsed": {
+    "tokens": 0,
+    "time": 0
+  },
+  "budgetLimit": {
+    "tokens": 60000,
+    "time": 3600000
+  },
+  "tasks": {},
+  "healingLog": [],
+  "transitions": [],
+  "circuitBreakers": {
+    "currentFailures": 0,
+    "consecutiveFailures": 0,
+    "taskFailures": {},
+    "cyclesWithoutProgress": 0,
+    "scopeDivergence": 0
+  },
+  "status": "running"
+}

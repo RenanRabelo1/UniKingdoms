@@ -1,6 +1,6 @@
 # Milestone 02: Inimigos e vida
 
-**Status:** planejado
+**Status:** concluído na v1 (2026-10-27). B5/B6 (arena com inimigos) foram absorvidos pelo M03: os inimigos agora aparecem nas salas da run, não numa arena.
 **Depends on:** [01: Player e combate básico](01-player-e-combate.md)
 **Blocks:** 03 (run de salas), 04 (recompensas da sala)
 
@@ -25,14 +25,16 @@ Dar desafio ao combate: o aluno ganha vida e pode ser reprovado (morrer), e o CC
 
 **Fora do escopo:** ondas e salas (M03), recompensas e drops (M04), knockback, animações, som, boss.
 
+**Sprites (v1):** Bug = Goblin Torch roxo, Robô = Goblin TNT roxo com dinamite, Barril = Goblin Barrel roxo (kamikaze, novo), membro da atlética = Warrior vermelho (novo). Player = Warrior do Free Pack.
+
 **Decisão:** a IA dos inimigos usa um estado simples (`enum` + `match`) dentro do script. A state machine por nós (convenção do `tech.md`) fica para o boss, que tem fases. Dois inimigos de 2 a 3 estados não justificam um nó por estado.
 
 ## Acceptance Criteria
 
-- [ ] B1. O player leva dano, não passa de 0, fica invencível por `HURT_IFRAMES` depois do golpe, ignora dano durante o dash e emite `died` a 0 HP. *(teste)*
-- [ ] B2. O inimigo perde vida pelos ataques do player, emite `died` e sai da árvore a 0 HP. *(teste)*
-- [ ] B3. O Bug se move em direção ao player e causa o dano do `bug.tres` por contato, respeitando a recarga. *(teste de cena)*
-- [ ] B4. O Robô para dentro do alcance e dispara um projétil que causa o dano do `robo.tres` ao atingir o player. *(teste de cena)*
+- [x] B1. O player leva dano, não passa de 0, fica invencível por `HURT_IFRAMES` depois do golpe, ignora dano durante o dash e emite `died` a 0 HP. *(teste)*
+- [x] B2. O inimigo perde vida pelos ataques do player, emite `died` e sai da árvore a 0 HP. *(teste)*
+- [x] B3. O Bug se move em direção ao player e causa o dano do `bug.tres` por contato, respeitando a recarga. *(teste de cena)*
+- [x] B4. O Robô para dentro do alcance e dispara um projétil que causa o dano do `robo.tres` ao atingir o player. *(teste de cena)*
 - [ ] B5. A arena tem os 5 inimigos, barra de vida no HUD e tela de "Reprovado" com R para reiniciar. *(teste de cena)*
 - [ ] B6. O jogo abre sem erros e o clique de mouse chega no player com janela real. *(boot + checagem de input)*
 - [ ] B7. A dificuldade e o feel dos dois inimigos estão bons. *(verificado por playtest do usuário)*
