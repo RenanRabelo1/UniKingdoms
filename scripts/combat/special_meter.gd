@@ -24,6 +24,11 @@ func add_damage(amount: float) -> void:
 	_set_value(value + per_damage * amount)
 
 
+## Soma pontos direto na barra (itens).
+func add(amount: float) -> void:
+	_set_value(value + amount)
+
+
 func is_full() -> bool:
 	return value >= MAX
 

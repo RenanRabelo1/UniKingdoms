@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/relic_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Tiny Swords (Free Pack)/Tiny Swords (Free Pack)/Terrain/Resources/Gold/Gold Stones/Gold Stone 1.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"pepita"
+display_name = "Pepita de Materiais"
+description = "+15% de Bits ganhos."
+stat = &"bits_gain"
+amount = 0.15
+icon = ExtResource("2")

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RelicData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/relic_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Tiny Swords (Free Pack)/Tiny Swords (Free Pack)/Terrain/Resources/Tools/Tool_02.png" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"machadinha"
+display_name = "Machadinha da Maquete"
+description = "+10% de dano no ataque pesado."
+stat = &"dmg_heavy"
+amount = 0.1
+icon = ExtResource("2")

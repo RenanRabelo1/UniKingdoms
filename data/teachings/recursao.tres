@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TeachingData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/teaching_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"recursao"
+display_name = "Recursão"
+professor = "Profa. Lógica"
+description = "Combos ganham +0.4 no multiplicador."
+stat = &"combo_bonus"
+amount = 0.4
+heal = 0
+locked = false

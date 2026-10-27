@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TeachingData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/teaching_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"compilacao"
+display_name = "Compilação Rápida"
+professor = "Profa. Lógica"
+description = "Ataques recarregam 20% mais rápido."
+stat = &"attack_speed"
+amount = 0.2
+heal = 0
+locked = false

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TeachingData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/teaching_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"capacitor"
+display_name = "Capacitor"
+professor = "Prof. Circuito"
+description = "A barra do especial carrega 50% mais rápido."
+stat = &"special_rate"
+amount = 0.5
+heal = 0
+locked = false

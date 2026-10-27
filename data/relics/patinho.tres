@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="RelicData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/relic_data.gd" id="1"]
+[ext_resource type="Texture2D" path="res://Tiny Swords (Free Pack)/Tiny Swords (Free Pack)/Terrain/Decorations/Rubber Duck/Rubber duck.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="icon"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 32, 32)
+
+[resource]
+script = ExtResource("1")
+id = &"patinho"
+display_name = "Patinho de Borracha"
+description = "+6% de dano em todos os golpes."
+stat = &"dmg_all"
+amount = 0.06
+icon = SubResource("icon")

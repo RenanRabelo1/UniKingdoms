@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="TeachingData" format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/teaching_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"overclock"
+display_name = "Overclock"
+professor = "Profa. Lógica"
+description = "15% de chance de crítico (dano x2)."
+stat = &"crit"
+amount = 0.15
+heal = 0
+locked = true

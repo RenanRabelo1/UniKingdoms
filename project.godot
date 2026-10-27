@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="UniKingDooms"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/ui/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,7 @@ GameState="*res://scripts/autoload/game_state.gd"
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/stretch/aspect="keep"
 
 [input]
 
@@ -109,7 +109,7 @@ pause={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-environment/defaults/default_clear_color=Color(0.08, 0.1, 0.16, 1)
+environment/defaults/default_clear_color=Color(0.278, 0.671, 0.663, 1)
 
 [editor_plugins]
 

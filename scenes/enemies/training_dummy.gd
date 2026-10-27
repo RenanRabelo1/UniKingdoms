@@ -13,6 +13,14 @@ var last_source := ""
 var _regen_timer := 0.0
 
 
+func _ready() -> void:
+	var s := Sprite2D.new()
+	s.texture = load("res://Tiny Swords/Tiny Swords (Update 010)/Deco/18.png")
+	s.position.y = -40
+	s.show_behind_parent = true
+	add_child(s)
+
+
 func take_damage(amount: int, source: String = "") -> void:
 	hits += 1
 	last_damage = amount
@@ -31,10 +39,9 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, 20.0, Color(0.8, 0.3, 0.3))
 	var ratio := float(hp) / MAX_HP
-	draw_rect(Rect2(-24, -34, 48, 6), Color(0.15, 0.15, 0.15))
-	draw_rect(Rect2(-24, -34, 48 * ratio, 6), Color(0.3, 0.9, 0.4))
+	draw_rect(Rect2(-24, -96, 48, 6), Color(0.15, 0.15, 0.15))
+	draw_rect(Rect2(-24, -96, 48 * ratio, 6), Color(0.3, 0.9, 0.4))
 	if hits > 0:
 		var font := ThemeDB.fallback_font
 		draw_string(font, Vector2(-40, 40), "%s %d" % [last_source, last_damage],
