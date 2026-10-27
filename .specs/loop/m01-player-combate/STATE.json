@@ -1,0 +1,54 @@
+{
+  "feature": "m01-player-combate",
+  "scope": "large",
+  "config": {
+    "maxCycles": 4,
+    "maxTokens": 35000,
+    "maxTime": 1800000,
+    "maxParallelAgents": 3,
+    "maxHealAttempts": 2,
+    "skipDesign": false,
+    "skipTasks": false
+  },
+  "phase": "implement",
+  "cycle": 1,
+  "startTime": "2026-10-27T13:54:04.819Z",
+  "budgetUsed": {
+    "tokens": 0,
+    "time": 0
+  },
+  "budgetLimit": {
+    "tokens": 35000,
+    "time": 1800000
+  },
+  "tasks": {},
+  "healingLog": [],
+  "transitions": [
+    {
+      "from": "spec",
+      "to": "tasks",
+      "cycle": 1,
+      "timestamp": "2026-10-27T13:56:01.860Z",
+      "gateResult": "pass",
+      "tokensUsed": 0,
+      "elapsed": 117
+    },
+    {
+      "from": "tasks",
+      "to": "implement",
+      "cycle": 1,
+      "timestamp": "2026-10-27T13:56:01.947Z",
+      "gateResult": "pass",
+      "tokensUsed": 0,
+      "elapsed": 117
+    }
+  ],
+  "circuitBreakers": {
+    "currentFailures": 0,
+    "consecutiveFailures": 0,
+    "taskFailures": {},
+    "cyclesWithoutProgress": 0,
+    "scopeDivergence": 0
+  },
+  "status": "running"
+}

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/combat/weapon_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"caneta"
+display_name = "Caneta"
+basic_damage = 10
+basic_cooldown = 0.25
+heavy_damage = 25
+heavy_cooldown = 0.6
+reach = 50.0
+hit_radius = 36.0
