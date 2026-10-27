@@ -10,8 +10,8 @@
     "skipDesign": false,
     "skipTasks": false
   },
-  "phase": "deliver",
-  "cycle": 1,
+  "phase": "spec",
+  "cycle": 2,
   "startTime": "2026-10-27T13:54:04.819Z",
   "budgetUsed": {
     "tokens": 0,
@@ -22,7 +22,15 @@
     "time": 1800000
   },
   "tasks": {},
-  "healingLog": [],
+  "healingLog": [
+    {
+      "taskId": "T06",
+      "cycle": 2,
+      "attempt": 1,
+      "timestamp": "2026-10-27T14:02:00.173Z",
+      "status": "pending"
+    }
+  ],
   "transitions": [
     {
       "from": "spec",
@@ -59,13 +67,24 @@
       "gateResult": "pass",
       "tokensUsed": 0,
       "elapsed": 309
+    },
+    {
+      "from": "deliver",
+      "to": "spec",
+      "cycle": 2,
+      "timestamp": "2026-10-27T14:00:00.640Z",
+      "gateResult": "pass",
+      "tokensUsed": 0,
+      "elapsed": 356
     }
   ],
   "circuitBreakers": {
     "currentFailures": 0,
     "consecutiveFailures": 0,
-    "taskFailures": {},
-    "cyclesWithoutProgress": 0,
+    "taskFailures": {
+      "T06": 1
+    },
+    "cyclesWithoutProgress": 1,
     "scopeDivergence": 0
   },
   "status": "running"
