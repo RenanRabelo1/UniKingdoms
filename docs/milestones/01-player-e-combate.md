@@ -1,6 +1,6 @@
 # Milestone 01: Player e combate básico
 
-**Status:** aguardando playtest (A8)
+**Status:** concluído em 2026-10-27. No primeiro playtest o ataque com mouse não funcionava: o fundo da arena consumia os cliques. Corrigido em `06a4b89`, com teste de regressão e checagem numa janela real. Reconfirmar o clique no F5 do M02.
 **Depends on:** scaffold
 **Loop:** `.specs/loop/m01-player-combate/STATE.json` (cerebro-loop, escopo large)
 
@@ -36,7 +36,7 @@ O aluno (placeholder geométrico) se move numa arena de teste, mira com o mouse,
 - [x] A5. O dash move o player rápido na direção do movimento (ou da mira, se parado), deixa ele invencível durante o dash e respeita a recarga. *(teste de cena)*
 - [x] A6. O especial causa dano em área e esvazia a barra. *(teste de cena)*
 - [x] A7. O jogo abre na arena sem erros no boot headless.
-- [ ] A8. O feel (velocidade, dash, ritmo dos ataques) está bom. *(verificado por playtest do usuário)*
+- [x] A8. O feel (velocidade, dash, ritmo dos ataques) está bom. *(verificado por playtest do usuário)*
 
 ## Exit Condition
 
