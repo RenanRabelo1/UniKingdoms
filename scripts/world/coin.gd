@@ -7,6 +7,8 @@ const MAGNET_RADIUS := 160.0
 const MAGNET_SPEED := 560.0
 
 var value := 1
+## A sala aumenta isto quando é limpa, para as moedas voarem até o player.
+var magnet_radius := MAGNET_RADIUS
 var _player: Node2D
 
 
@@ -25,7 +27,7 @@ func _process(delta: float) -> void:
 	if not is_instance_valid(_player):
 		return
 	var d := global_position.distance_to(_player.global_position)
-	if d < MAGNET_RADIUS:
+	if d < magnet_radius:
 		global_position = global_position.move_toward(_player.global_position, MAGNET_SPEED * delta)
 	if d < 20.0:
 		var gain := GameState.add_bits(value)

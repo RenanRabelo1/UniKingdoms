@@ -116,6 +116,9 @@ func _free_spot(pos: Vector2, min_dist: float) -> bool:
 
 func open_door() -> void:
 	door_open = true
+	for c in get_children():
+		if c is Coin:
+			c.magnet_radius = 5000.0
 	_gate.set_deferred(&"disabled", true)
 	_bridge.visible = true
 	MapBuilder.sign_label(self, "Próxima sala ▲", Vector2(DOOR_X, 92))
@@ -186,7 +189,7 @@ func _on_cleared() -> void:
 		return
 	Coin.drop(self, Vector2(DOOR_X, 300), 10 + 2 * room_index)
 	_give_relic(RELIC_CHANCE)
-	open_door()
+	get_tree().create_timer(0.5, false).timeout.connect(open_door)
 
 
 func _give_relic(chance: float) -> void:
