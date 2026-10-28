@@ -36,7 +36,7 @@ Tudo que foi mencionado e adiado. Itens promovidos ganham ✔ e o link; itens re
 
 ## Open questions (decisões do usuário)
 
-- Quais blocos reais são do CCT, CCS, CCG e CCJ (o mapa oficial não diz; hoje: CCT no bloco N, CCS no D, CCG no L, CCJ no C).
+- ~~Quais blocos reais são do CCT, CCS, CCG e CCJ~~: mantido CCT no N, CCS no D, CCG no L, CCJ no C (decisão do usuário, 2026-10-27; revisar depois do playtest).
 - Posição real do Espaço Cultural (não está no mapa oficial; hoje ao lado da Pós-Unifor).
 
 - Título definitivo (hoje "Reinos da Unifor").
