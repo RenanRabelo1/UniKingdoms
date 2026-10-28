@@ -8,3 +8,14 @@
 
 # Builds exportados
 /builds/
+
+# Packs de terceiros que o jogo não usa (cada um tem .gdignore para o Godot não importar)
+/Free - Raven Fantasy Icons/
+/FreeEnvironment/
+/Modern_Interiors_Free_v2.2/
+/Tiny RPG Character Asset Pack 01 v2.0 -Free Soldier&Orc/
+/Tiny RPG Character Asset Pack 02 v1.01-Free Demon_A&Blood Monster_A/
+
+# Kit original (a cópia usada pelo jogo está em assets/unifor/)
+/unifor-campus-kit/
+/docs/referencias/*.pdf

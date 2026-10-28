@@ -15,6 +15,7 @@ const MISSION_REP := 25
 const MISSION_BITS := 60
 const ALLY_REP := 50
 const AMBUSH_CHANCE := 0.25
+const CAMPUS_ENCOUNTER_BITS := 8
 const COLORS := ["Blue", "Yellow", "Purple", "Black"]
 const COLOR_NAMES := {"Blue": "Azul", "Yellow": "Amarelo", "Purple": "Roxo", "Black": "Preto"}
 ## Itens usáveis na run, na ordem das teclas 1, 2 e 3.
@@ -73,6 +74,8 @@ static func default_profile(color := "Blue") -> Dictionary:
 		"color": color, "bits": START_BITS, "stash": {}, "relics": [], "unlocked": [],
 		"cct_conquered": false, "reputation": 0, "mission": {}, "last_mission": "",
 		"missions_done": 0, "runs": 0, "wins": 0, "deaths": 0,
+		# Encontros do campus já vencidos; voltam a aparecer quando uma run termina (sem farm).
+		"campus_cleared": [],
 	}
 
 
@@ -80,6 +83,20 @@ func new_game(color: String) -> void:
 	profile = default_profile(color)
 	run = {}
 	save_game()
+
+
+func is_campus_cleared(id: String) -> bool:
+	return id in profile.campus_cleared
+
+
+## Encontro do campus vencido: paga no banco uma vez até a próxima run terminar.
+func clear_campus_encounter(id: String) -> void:
+	if is_campus_cleared(id):
+		return
+	profile.campus_cleared.append(id)
+	profile.bits += CAMPUS_ENCOUNTER_BITS
+	save_game()
+	bits_changed.emit()
 
 
 func has_run() -> bool:
@@ -143,6 +160,7 @@ func end_run(victory: bool) -> Dictionary:
 	else:
 		profile.deaths += 1
 	run = {}
+	profile.campus_cleared = []
 	last_result = result
 	save_game()
 	bits_changed.emit()

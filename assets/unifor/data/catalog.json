@@ -1,0 +1,3240 @@
+{
+  "title": "Unifor Campus Kit",
+  "tile_size": 64,
+  "generated_by": "image_gen",
+  "architecture": "stylized adaptation; not a survey or exact facade reconstruction",
+  "sprites": [
+    {
+      "id": "cct-bloco-tecnologia",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/cct-bloco-tecnologia.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        0,
+        0,
+        440,
+        409
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/cct-bloco-tecnologia.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          2,
+          2,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "ccs-bloco-saude",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/ccs-bloco-saude.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        440,
+        0,
+        827,
+        409
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/ccs-bloco-saude.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          454,
+          2,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "ccg-bloco-gestao",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/ccg-bloco-gestao.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        827,
+        0,
+        1254,
+        409
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/ccg-bloco-gestao.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          906,
+          2,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "ccj-bloco-direito",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/ccj-bloco-direito.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        0,
+        409,
+        424,
+        806
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/ccj-bloco-direito.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          2,
+          390,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "biblioteca-central",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/biblioteca-central.png",
+      "size": [
+        448,
+        384
+      ],
+      "grid_footprint": [
+        7,
+        6
+      ],
+      "pivot": [
+        224,
+        368
+      ],
+      "source_rect": [
+        424,
+        409,
+        826,
+        806
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/biblioteca-central.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          454,
+          390,
+          448,
+          384
+        ]
+      }
+    },
+    {
+      "id": "reitoria",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/reitoria.png",
+      "size": [
+        448,
+        384
+      ],
+      "grid_footprint": [
+        7,
+        6
+      ],
+      "pivot": [
+        224,
+        368
+      ],
+      "source_rect": [
+        826,
+        409,
+        1254,
+        806
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/reitoria.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          906,
+          390,
+          448,
+          384
+        ]
+      }
+    },
+    {
+      "id": "teatro-celina-queiroz",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/teatro-celina-queiroz.png",
+      "size": [
+        448,
+        384
+      ],
+      "grid_footprint": [
+        7,
+        6
+      ],
+      "pivot": [
+        224,
+        368
+      ],
+      "source_rect": [
+        0,
+        806,
+        428,
+        1254
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/teatro-celina-queiroz.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          2,
+          778,
+          448,
+          384
+        ]
+      }
+    },
+    {
+      "id": "nami",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/nami.png",
+      "size": [
+        448,
+        320
+      ],
+      "grid_footprint": [
+        7,
+        5
+      ],
+      "pivot": [
+        224,
+        304
+      ],
+      "source_rect": [
+        428,
+        806,
+        826,
+        1254
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/nami.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          454,
+          778,
+          448,
+          320
+        ]
+      }
+    },
+    {
+      "id": "centro-convivencia",
+      "category": "edificios-principais",
+      "path": "assets/unifor/art/_placeholder/buildings/centro-convivencia.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        826,
+        806,
+        1254,
+        1254
+      ],
+      "source_sheet": "sources/edificios-principais.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/centro-convivencia.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-principais.png",
+        "region": [
+          906,
+          778,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "ginasio-poliesportivo",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/ginasio-poliesportivo.png",
+      "size": [
+        512,
+        448
+      ],
+      "grid_footprint": [
+        8,
+        7
+      ],
+      "pivot": [
+        256,
+        432
+      ],
+      "source_rect": [
+        0,
+        0,
+        431,
+        491
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/ginasio-poliesportivo.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          2,
+          2,
+          512,
+          448
+        ]
+      }
+    },
+    {
+      "id": "academia",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/academia.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        431,
+        0,
+        826,
+        491
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/academia.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          518,
+          2,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "centro-eventos",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/centro-eventos.png",
+      "size": [
+        512,
+        384
+      ],
+      "grid_footprint": [
+        8,
+        6
+      ],
+      "pivot": [
+        256,
+        368
+      ],
+      "source_rect": [
+        826,
+        0,
+        1254,
+        491
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/centro-eventos.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          1034,
+          2,
+          512,
+          384
+        ]
+      }
+    },
+    {
+      "id": "espaco-cultural",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/espaco-cultural.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        0,
+        491,
+        430,
+        866
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/espaco-cultural.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          2,
+          454,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "pos-graduacao",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/pos-graduacao.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        430,
+        491,
+        839,
+        866
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/pos-graduacao.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          518,
+          454,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "tec-unifor",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/tec-unifor.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        839,
+        491,
+        1254,
+        866
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/tec-unifor.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          1034,
+          454,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "forum",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/forum.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        0,
+        866,
+        435,
+        1254
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/forum.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          2,
+          906,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "prefeitura-campus",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/prefeitura-campus.png",
+      "size": [
+        320,
+        256
+      ],
+      "grid_footprint": [
+        5,
+        4
+      ],
+      "pivot": [
+        160,
+        240
+      ],
+      "source_rect": [
+        435,
+        866,
+        843,
+        1254
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/prefeitura-campus.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          518,
+          906,
+          320,
+          256
+        ]
+      }
+    },
+    {
+      "id": "dce-atletica",
+      "category": "edificios-servicos",
+      "path": "assets/unifor/art/_placeholder/buildings/dce-atletica.png",
+      "size": [
+        320,
+        256
+      ],
+      "grid_footprint": [
+        5,
+        4
+      ],
+      "pivot": [
+        160,
+        240
+      ],
+      "source_rect": [
+        843,
+        866,
+        1254,
+        1254
+      ],
+      "source_sheet": "sources/edificios-servicos.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/dce-atletica.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/edificios-servicos.png",
+        "region": [
+          1034,
+          906,
+          320,
+          256
+        ]
+      }
+    },
+    {
+      "id": "estadio-atletismo",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/estadio-atletismo.png",
+      "size": [
+        768,
+        512
+      ],
+      "grid_footprint": [
+        12,
+        8
+      ],
+      "pivot": [
+        384,
+        496
+      ],
+      "source_rect": [
+        0,
+        0,
+        517,
+        364
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/estadio-atletismo.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          2,
+          2,
+          768,
+          512
+        ]
+      }
+    },
+    {
+      "id": "campo-futebol-society",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/campo-futebol-society.png",
+      "size": [
+        640,
+        448
+      ],
+      "grid_footprint": [
+        10,
+        7
+      ],
+      "pivot": [
+        320,
+        432
+      ],
+      "source_rect": [
+        517,
+        0,
+        1031,
+        364
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/campo-futebol-society.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          774,
+          2,
+          640,
+          448
+        ]
+      }
+    },
+    {
+      "id": "quadra-tenis",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/quadra-tenis.png",
+      "size": [
+        384,
+        320
+      ],
+      "grid_footprint": [
+        6,
+        5
+      ],
+      "pivot": [
+        192,
+        304
+      ],
+      "source_rect": [
+        1031,
+        0,
+        1536,
+        364
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/quadra-tenis.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          1546,
+          2,
+          384,
+          320
+        ]
+      }
+    },
+    {
+      "id": "quadra-poliesportiva",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/quadra-poliesportiva.png",
+      "size": [
+        448,
+        320
+      ],
+      "grid_footprint": [
+        7,
+        5
+      ],
+      "pivot": [
+        224,
+        304
+      ],
+      "source_rect": [
+        0,
+        364,
+        513,
+        707
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/quadra-poliesportiva.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          2,
+          518,
+          448,
+          320
+        ]
+      }
+    },
+    {
+      "id": "piscina-olimpica",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/piscina-olimpica.png",
+      "size": [
+        512,
+        384
+      ],
+      "grid_footprint": [
+        8,
+        6
+      ],
+      "pivot": [
+        256,
+        368
+      ],
+      "source_rect": [
+        513,
+        364,
+        1025,
+        707
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/piscina-olimpica.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          774,
+          518,
+          512,
+          384
+        ]
+      }
+    },
+    {
+      "id": "arquibancada",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/arquibancada.png",
+      "size": [
+        384,
+        256
+      ],
+      "grid_footprint": [
+        6,
+        4
+      ],
+      "pivot": [
+        192,
+        240
+      ],
+      "source_rect": [
+        1025,
+        364,
+        1536,
+        707
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/arquibancada.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          1546,
+          518,
+          384,
+          256
+        ]
+      }
+    },
+    {
+      "id": "estacionamento-solar",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/estacionamento-solar.png",
+      "size": [
+        448,
+        320
+      ],
+      "grid_footprint": [
+        7,
+        5
+      ],
+      "pivot": [
+        224,
+        304
+      ],
+      "source_rect": [
+        0,
+        707,
+        503,
+        1024
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/estacionamento-solar.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          2,
+          1034,
+          448,
+          320
+        ]
+      }
+    },
+    {
+      "id": "portaria-principal",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/portaria-principal.png",
+      "size": [
+        512,
+        320
+      ],
+      "grid_footprint": [
+        8,
+        5
+      ],
+      "pivot": [
+        256,
+        304
+      ],
+      "source_rect": [
+        503,
+        707,
+        1122,
+        1024
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/portaria-principal.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          774,
+          1034,
+          512,
+          320
+        ]
+      }
+    },
+    {
+      "id": "ponto-carrinho-eletrico",
+      "category": "esportes-mobilidade",
+      "path": "assets/unifor/art/_placeholder/sports/ponto-carrinho-eletrico.png",
+      "size": [
+        256,
+        192
+      ],
+      "grid_footprint": [
+        4,
+        3
+      ],
+      "pivot": [
+        128,
+        176
+      ],
+      "source_rect": [
+        1122,
+        707,
+        1536,
+        1024
+      ],
+      "source_sheet": "sources/esportes-mobilidade.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/ponto-carrinho-eletrico.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/esportes-mobilidade.png",
+        "region": [
+          1546,
+          1034,
+          256,
+          192
+        ]
+      }
+    },
+    {
+      "id": "arvore-copa-larga",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/arvore-copa-larga.png",
+      "size": [
+        256,
+        256
+      ],
+      "grid_footprint": [
+        4,
+        4
+      ],
+      "pivot": [
+        128,
+        240
+      ],
+      "source_rect": [
+        0,
+        0,
+        378,
+        380
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/arvore-copa-larga.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          2,
+          2,
+          256,
+          256
+        ]
+      }
+    },
+    {
+      "id": "arvore-copa-redonda",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/arvore-copa-redonda.png",
+      "size": [
+        192,
+        256
+      ],
+      "grid_footprint": [
+        3,
+        4
+      ],
+      "pivot": [
+        96,
+        240
+      ],
+      "source_rect": [
+        378,
+        0,
+        640,
+        380
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/arvore-copa-redonda.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          262,
+          2,
+          192,
+          256
+        ]
+      }
+    },
+    {
+      "id": "arvore-alta",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/arvore-alta.png",
+      "size": [
+        192,
+        320
+      ],
+      "grid_footprint": [
+        3,
+        5
+      ],
+      "pivot": [
+        96,
+        304
+      ],
+      "source_rect": [
+        640,
+        0,
+        938,
+        380
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/arvore-alta.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          522,
+          2,
+          192,
+          320
+        ]
+      }
+    },
+    {
+      "id": "arvore-florida-amarela",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/arvore-florida-amarela.png",
+      "size": [
+        192,
+        256
+      ],
+      "grid_footprint": [
+        3,
+        4
+      ],
+      "pivot": [
+        96,
+        240
+      ],
+      "source_rect": [
+        938,
+        0,
+        1254,
+        380
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/arvore-florida-amarela.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          782,
+          2,
+          192,
+          256
+        ]
+      }
+    },
+    {
+      "id": "palmeira-alta",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/palmeira-alta.png",
+      "size": [
+        192,
+        320
+      ],
+      "grid_footprint": [
+        3,
+        5
+      ],
+      "pivot": [
+        96,
+        304
+      ],
+      "source_rect": [
+        0,
+        380,
+        360,
+        740
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/palmeira-alta.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          2,
+          326,
+          192,
+          320
+        ]
+      }
+    },
+    {
+      "id": "palmeira-jovem",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/palmeira-jovem.png",
+      "size": [
+        128,
+        192
+      ],
+      "grid_footprint": [
+        2,
+        3
+      ],
+      "pivot": [
+        64,
+        176
+      ],
+      "source_rect": [
+        360,
+        380,
+        623,
+        740
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/palmeira-jovem.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          262,
+          326,
+          128,
+          192
+        ]
+      }
+    },
+    {
+      "id": "coqueiro",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/coqueiro.png",
+      "size": [
+        192,
+        320
+      ],
+      "grid_footprint": [
+        3,
+        5
+      ],
+      "pivot": [
+        96,
+        304
+      ],
+      "source_rect": [
+        623,
+        380,
+        942,
+        740
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/coqueiro.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          522,
+          326,
+          192,
+          320
+        ]
+      }
+    },
+    {
+      "id": "palmeiras-duplas",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/palmeiras-duplas.png",
+      "size": [
+        256,
+        256
+      ],
+      "grid_footprint": [
+        4,
+        4
+      ],
+      "pivot": [
+        128,
+        240
+      ],
+      "source_rect": [
+        942,
+        380,
+        1254,
+        740
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/palmeiras-duplas.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          782,
+          326,
+          256,
+          256
+        ]
+      }
+    },
+    {
+      "id": "arbusto-redondo",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/arbusto-redondo.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        0,
+        740,
+        299,
+        984
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/arbusto-redondo.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          2,
+          650,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "cerca-viva-horizontal",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/cerca-viva-horizontal.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        299,
+        740,
+        634,
+        984
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/cerca-viva-horizontal.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          262,
+          650,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "cerca-viva-canto",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/cerca-viva-canto.png",
+      "size": [
+        192,
+        192
+      ],
+      "grid_footprint": [
+        3,
+        3
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "source_rect": [
+        634,
+        740,
+        948,
+        984
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/cerca-viva-canto.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          522,
+          650,
+          192,
+          192
+        ]
+      }
+    },
+    {
+      "id": "canteiro-flores",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/canteiro-flores.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        948,
+        740,
+        1254,
+        984
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/canteiro-flores.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          782,
+          650,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "pedra-grande",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/pedra-grande.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        0,
+        984,
+        349,
+        1254
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/pedra-grande.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          2,
+          974,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "pedras-pequenas",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/pedras-pequenas.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        349,
+        984,
+        626,
+        1254
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/pedras-pequenas.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          262,
+          974,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "vitoria-regia",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/vitoria-regia.png",
+      "size": [
+        128,
+        64
+      ],
+      "grid_footprint": [
+        2,
+        1
+      ],
+      "pivot": [
+        64,
+        58
+      ],
+      "source_rect": [
+        626,
+        984,
+        968,
+        1254
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/vitoria-regia.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          522,
+          974,
+          128,
+          64
+        ]
+      }
+    },
+    {
+      "id": "capim-lagoa",
+      "category": "vegetacao",
+      "path": "assets/unifor/art/_placeholder/nature/capim-lagoa.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        968,
+        984,
+        1254,
+        1254
+      ],
+      "source_sheet": "sources/vegetacao.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/capim-lagoa.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/vegetacao.png",
+        "region": [
+          782,
+          974,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "banco-madeira",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/banco-madeira.png",
+      "size": [
+        128,
+        64
+      ],
+      "grid_footprint": [
+        2,
+        1
+      ],
+      "pivot": [
+        64,
+        58
+      ],
+      "source_rect": [
+        0,
+        0,
+        318,
+        323
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/banco-madeira.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          2,
+          2,
+          128,
+          64
+        ]
+      }
+    },
+    {
+      "id": "banco-concreto",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/banco-concreto.png",
+      "size": [
+        128,
+        64
+      ],
+      "grid_footprint": [
+        2,
+        1
+      ],
+      "pivot": [
+        64,
+        58
+      ],
+      "source_rect": [
+        318,
+        0,
+        674,
+        323
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/banco-concreto.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          198,
+          2,
+          128,
+          64
+        ]
+      }
+    },
+    {
+      "id": "poste-luz",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/poste-luz.png",
+      "size": [
+        64,
+        192
+      ],
+      "grid_footprint": [
+        1,
+        3
+      ],
+      "pivot": [
+        32,
+        176
+      ],
+      "source_rect": [
+        674,
+        0,
+        950,
+        323
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/poste-luz.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          394,
+          2,
+          64,
+          192
+        ]
+      }
+    },
+    {
+      "id": "lixeira",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/lixeira.png",
+      "size": [
+        64,
+        64
+      ],
+      "grid_footprint": [
+        1,
+        1
+      ],
+      "pivot": [
+        32,
+        58
+      ],
+      "source_rect": [
+        950,
+        0,
+        1254,
+        323
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/lixeira.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          590,
+          2,
+          64,
+          64
+        ]
+      }
+    },
+    {
+      "id": "lixeiras-reciclagem",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/lixeiras-reciclagem.png",
+      "size": [
+        192,
+        64
+      ],
+      "grid_footprint": [
+        3,
+        1
+      ],
+      "pivot": [
+        96,
+        58
+      ],
+      "source_rect": [
+        0,
+        323,
+        325,
+        616
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/lixeiras-reciclagem.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          2,
+          198,
+          192,
+          64
+        ]
+      }
+    },
+    {
+      "id": "bicicletario",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/bicicletario.png",
+      "size": [
+        128,
+        64
+      ],
+      "grid_footprint": [
+        2,
+        1
+      ],
+      "pivot": [
+        64,
+        58
+      ],
+      "source_rect": [
+        325,
+        323,
+        633,
+        616
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/bicicletario.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          198,
+          198,
+          128,
+          64
+        ]
+      }
+    },
+    {
+      "id": "bicicleta",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/bicicleta.png",
+      "size": [
+        128,
+        64
+      ],
+      "grid_footprint": [
+        2,
+        1
+      ],
+      "pivot": [
+        64,
+        58
+      ],
+      "source_rect": [
+        633,
+        323,
+        933,
+        616
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/bicicleta.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          394,
+          198,
+          128,
+          64
+        ]
+      }
+    },
+    {
+      "id": "carrinho-eletrico",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/carrinho-eletrico.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        933,
+        323,
+        1254,
+        616
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/carrinho-eletrico.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          590,
+          198,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "bebedouro",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/bebedouro.png",
+      "size": [
+        64,
+        128
+      ],
+      "grid_footprint": [
+        1,
+        2
+      ],
+      "pivot": [
+        32,
+        112
+      ],
+      "source_rect": [
+        0,
+        616,
+        315,
+        926
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/bebedouro.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          2,
+          394,
+          64,
+          128
+        ]
+      }
+    },
+    {
+      "id": "totem-orientacao",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/totem-orientacao.png",
+      "size": [
+        64,
+        128
+      ],
+      "grid_footprint": [
+        1,
+        2
+      ],
+      "pivot": [
+        32,
+        112
+      ],
+      "source_rect": [
+        315,
+        616,
+        620,
+        926
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/totem-orientacao.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          198,
+          394,
+          64,
+          128
+        ]
+      }
+    },
+    {
+      "id": "mesa-piquenique",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/mesa-piquenique.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        620,
+        616,
+        943,
+        926
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/mesa-piquenique.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          394,
+          394,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "guarda-sol-mesa",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/guarda-sol-mesa.png",
+      "size": [
+        192,
+        192
+      ],
+      "grid_footprint": [
+        3,
+        3
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "source_rect": [
+        943,
+        616,
+        1254,
+        926
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/guarda-sol-mesa.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          590,
+          394,
+          192,
+          192
+        ]
+      }
+    },
+    {
+      "id": "fonte-jardim",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/fonte-jardim.png",
+      "size": [
+        192,
+        192
+      ],
+      "grid_footprint": [
+        3,
+        3
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "source_rect": [
+        0,
+        926,
+        331,
+        1254
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/fonte-jardim.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          2,
+          590,
+          192,
+          192
+        ]
+      }
+    },
+    {
+      "id": "escultura-campus",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/escultura-campus.png",
+      "size": [
+        128,
+        192
+      ],
+      "grid_footprint": [
+        2,
+        3
+      ],
+      "pivot": [
+        64,
+        176
+      ],
+      "source_rect": [
+        331,
+        926,
+        620,
+        1254
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/escultura-campus.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          198,
+          590,
+          128,
+          192
+        ]
+      }
+    },
+    {
+      "id": "banca-lanchonete",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/banca-lanchonete.png",
+      "size": [
+        192,
+        192
+      ],
+      "grid_footprint": [
+        3,
+        3
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "source_rect": [
+        620,
+        926,
+        944,
+        1254
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/banca-lanchonete.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          394,
+          590,
+          192,
+          192
+        ]
+      }
+    },
+    {
+      "id": "quiosque-cafe",
+      "category": "objetos-campus",
+      "path": "assets/unifor/art/_placeholder/props/quiosque-cafe.png",
+      "size": [
+        192,
+        192
+      ],
+      "grid_footprint": [
+        3,
+        3
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "source_rect": [
+        944,
+        926,
+        1254,
+        1254
+      ],
+      "source_sheet": "sources/objetos-campus.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/quiosque-cafe.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/objetos-campus.png",
+        "region": [
+          590,
+          590,
+          192,
+          192
+        ]
+      }
+    },
+    {
+      "id": "corredor-horizontal",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/corredor-horizontal.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        0,
+        0,
+        349,
+        347
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/corredor-horizontal.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          2,
+          2,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "corredor-vertical",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/corredor-vertical.png",
+      "size": [
+        128,
+        192
+      ],
+      "grid_footprint": [
+        2,
+        3
+      ],
+      "pivot": [
+        64,
+        176
+      ],
+      "source_rect": [
+        349,
+        0,
+        605,
+        347
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/corredor-vertical.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          262,
+          2,
+          128,
+          192
+        ]
+      }
+    },
+    {
+      "id": "corredor-canto",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/corredor-canto.png",
+      "size": [
+        192,
+        192
+      ],
+      "grid_footprint": [
+        3,
+        3
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "source_rect": [
+        605,
+        0,
+        930,
+        347
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/corredor-canto.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          522,
+          2,
+          192,
+          192
+        ]
+      }
+    },
+    {
+      "id": "corredor-cruzamento",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/corredor-cruzamento.png",
+      "size": [
+        192,
+        192
+      ],
+      "grid_footprint": [
+        3,
+        3
+      ],
+      "pivot": [
+        96,
+        176
+      ],
+      "source_rect": [
+        930,
+        0,
+        1254,
+        347
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/corredor-cruzamento.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          782,
+          2,
+          192,
+          192
+        ]
+      }
+    },
+    {
+      "id": "parede-frontal",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/parede-frontal.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        0,
+        347,
+        367,
+        649
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/parede-frontal.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          2,
+          198,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "parede-lateral",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/parede-lateral.png",
+      "size": [
+        64,
+        128
+      ],
+      "grid_footprint": [
+        1,
+        2
+      ],
+      "pivot": [
+        32,
+        112
+      ],
+      "source_rect": [
+        367,
+        347,
+        602,
+        649
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/parede-lateral.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          262,
+          198,
+          64,
+          128
+        ]
+      }
+    },
+    {
+      "id": "canto-parede",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/canto-parede.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        602,
+        347,
+        913,
+        649
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/canto-parede.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          522,
+          198,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "janela-dupla",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/janela-dupla.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        913,
+        347,
+        1254,
+        649
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/janela-dupla.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          782,
+          198,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "porta-vidro",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/porta-vidro.png",
+      "size": [
+        128,
+        128
+      ],
+      "grid_footprint": [
+        2,
+        2
+      ],
+      "pivot": [
+        64,
+        112
+      ],
+      "source_rect": [
+        0,
+        649,
+        323,
+        922
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/porta-vidro.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          2,
+          394,
+          128,
+          128
+        ]
+      }
+    },
+    {
+      "id": "escada-frontal",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/escada-frontal.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        323,
+        649,
+        628,
+        922
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/escada-frontal.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          262,
+          394,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "rampa-acesso",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/rampa-acesso.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        628,
+        649,
+        940,
+        922
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/rampa-acesso.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          522,
+          394,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "cobertura-solar",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/cobertura-solar.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        940,
+        649,
+        1254,
+        922
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/cobertura-solar.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          782,
+          394,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "ponte-madeira",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/ponte-madeira.png",
+      "size": [
+        128,
+        192
+      ],
+      "grid_footprint": [
+        2,
+        3
+      ],
+      "pivot": [
+        64,
+        176
+      ],
+      "source_rect": [
+        0,
+        922,
+        307,
+        1254
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": false,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "none",
+      "godot_prefab": "assets/unifor/godot/prefabs/ponte-madeira.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          2,
+          590,
+          128,
+          192
+        ]
+      }
+    },
+    {
+      "id": "muro-baixo",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/muro-baixo.png",
+      "size": [
+        192,
+        64
+      ],
+      "grid_footprint": [
+        3,
+        1
+      ],
+      "pivot": [
+        96,
+        58
+      ],
+      "source_rect": [
+        307,
+        922,
+        624,
+        1254
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/muro-baixo.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          262,
+          590,
+          192,
+          64
+        ]
+      }
+    },
+    {
+      "id": "portao-metal",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/portao-metal.png",
+      "size": [
+        192,
+        128
+      ],
+      "grid_footprint": [
+        3,
+        2
+      ],
+      "pivot": [
+        96,
+        112
+      ],
+      "source_rect": [
+        624,
+        922,
+        927,
+        1254
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/portao-metal.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          522,
+          590,
+          192,
+          128
+        ]
+      }
+    },
+    {
+      "id": "fachada-bloco-repetivel",
+      "category": "modulos-arquitetura",
+      "path": "assets/unifor/art/_placeholder/modules/fachada-bloco-repetivel.png",
+      "size": [
+        256,
+        192
+      ],
+      "grid_footprint": [
+        4,
+        3
+      ],
+      "pivot": [
+        128,
+        176
+      ],
+      "source_rect": [
+        927,
+        922,
+        1254,
+        1254
+      ],
+      "source_sheet": "sources/modulos-arquitetura.png",
+      "blocking": true,
+      "animation": "static",
+      "alpha": "binary",
+      "pixel_step": 2,
+      "collision": "approximate base rectangle",
+      "godot_prefab": "assets/unifor/godot/prefabs/fachada-bloco-repetivel.tscn",
+      "atlas": {
+        "path": "assets/unifor/atlases/modulos-arquitetura.png",
+        "region": [
+          782,
+          590,
+          256,
+          192
+        ]
+      }
+    }
+  ],
+  "terrains": [
+    {
+      "id": "grama-tropical",
+      "source_id": 0,
+      "terrain_set": 0,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/grama-tropical-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/grama-tropical-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "grama-clara",
+      "source_id": 1,
+      "terrain_set": 1,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/grama-clara-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/grama-clara-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "piso-praca",
+      "source_id": 2,
+      "terrain_set": 2,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/piso-praca-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/piso-praca-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "concreto-claro",
+      "source_id": 3,
+      "terrain_set": 3,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/concreto-claro-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/concreto-claro-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "asfalto",
+      "source_id": 4,
+      "terrain_set": 4,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/asfalto-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/asfalto-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "terra",
+      "source_id": 5,
+      "terrain_set": 5,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/terra-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/terra-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "areia",
+      "source_id": 6,
+      "terrain_set": 6,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/areia-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/areia-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "deck-madeira",
+      "source_id": 7,
+      "terrain_set": 7,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/deck-madeira-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/deck-madeira-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "piso-biblioteca",
+      "source_id": 8,
+      "terrain_set": 8,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/piso-biblioteca-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/piso-biblioteca-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "pista-atletismo",
+      "source_id": 9,
+      "terrain_set": 9,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/pista-atletismo-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/pista-atletismo-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "quadra-azul",
+      "source_id": 10,
+      "terrain_set": 10,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/quadra-azul-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/quadra-azul-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "gramado-campo",
+      "source_id": 11,
+      "terrain_set": 11,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/gramado-campo-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/gramado-campo-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "agua-lagoa",
+      "source_id": 12,
+      "terrain_set": 12,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/agua-lagoa-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/agua-lagoa-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "agua-piscina",
+      "source_id": 13,
+      "terrain_set": 13,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/agua-piscina-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/agua-piscina-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "piso-ladrilho",
+      "source_id": 14,
+      "terrain_set": 14,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/piso-ladrilho-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/piso-ladrilho-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    },
+    {
+      "id": "ciclovia",
+      "source_id": 15,
+      "terrain_set": 15,
+      "terrain_id": 0,
+      "path": "assets/unifor/art/_placeholder/terrain/ciclovia-autotile.png",
+      "base_path": "assets/unifor/art/_placeholder/terrain/ciclovia-base.png",
+      "tile_size": [
+        64,
+        64
+      ],
+      "atlas_size": [
+        576,
+        384
+      ],
+      "variants": 47,
+      "layout": "first 3x3 matches MapBuilder.island; remaining slots use masks.json",
+      "animation": "static"
+    }
+  ],
+  "terrain_tile_count": 752
+}

@@ -5,6 +5,7 @@ Tudo que foi mencionado e adiado. Itens promovidos ganham ✔ e o link; itens re
 ## Promovidos
 
 - [x] ✔ M03 Run de salas, M04 Recompensas, mercado, relíquias, save, chefe, hub, atlética, customização e mais 2 inimigos → [Milestone 03 (v1)](milestones/03-v1-mvp-cct.md).
+- [x] ✔ Acerto do combate (hurtbox) e campus com o Unifor-campus-kit → [Milestone 04 (v1.1)](milestones/04-v1.1-combate-campus.md).
 
 ## Próximas versões (fora da v1)
 
@@ -21,7 +22,10 @@ Tudo que foi mencionado e adiado. Itens promovidos ganham ✔ e o link; itens re
 - [ ] Áudio: músicas e efeitos (precisa dos assets).
 - [ ] Fonte com identidade do jogo (precisa do arquivo).
 - [ ] Knockback e hit-stop nos inimigos.
-- [ ] Inimigos contornam árvores e pedras (hoje só deslizam).
+- [ ] Inimigos contornam árvores, pedras e prédios (hoje só deslizam; no campus eles param de perseguir a 700 px).
+- [ ] Usar as peças de arquitetura do kit (corredores cobertos, paredes, rampas, ponte, muro, portão) e os 8 terrenos ainda não usados (quadra, pista, terra, areia, piso da biblioteca, ladrilho, piscina, gramado).
+- [ ] Salas da run com cenário do CCT (hoje: ilhas Tiny Swords).
+- [ ] Animação de ataque para cima/baixo (o Warrior só tem golpe lateral; o golpe vale em 8 direções e o flash mostra a área).
 - [ ] Sprites próprios de professores, chefe e inimigos "de CCT" (hoje: monges, Lancer e goblins do Tiny Swords).
 - [ ] Ícone do executável.
 
@@ -31,6 +35,9 @@ Tudo que foi mencionado e adiado. Itens promovidos ganham ✔ e o link; itens re
 - [ ] Dano/vida dos inimigos por sala (`hp_scale` +8%/sala, 3 + n inimigos) e vida do chefe (900).
 
 ## Open questions (decisões do usuário)
+
+- Quais blocos reais são do CCT, CCS, CCG e CCJ (o mapa oficial não diz; hoje: CCT no bloco N, CCS no D, CCG no L, CCJ no C).
+- Posição real do Espaço Cultural (não está no mapa oficial; hoje ao lado da Pós-Unifor).
 
 - Título definitivo (hoje "Reinos da Unifor").
 - Nomes da atlética do CCT ("Atlética Engrenagem" é provisório) e das outras 3.

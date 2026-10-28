@@ -127,6 +127,19 @@ Um reino completo, o **CCT**. O detalhe está em `docs/milestones/03-v1-mvp-cct.
   - o mercado dela dá 0,4% de desconto por ponto de reputação.
 - **Save:** automático ao entrar em cada sala, comprar e mudar o perfil.
 
+## v1.1: combate e campus da Unifor (2026-10-27)
+
+O detalhe está em `docs/milestones/04-v1.1-combate-campus.md`.
+
+- **Combate:** cada inimigo tem uma hurtbox do tamanho do corpo visível, separada da colisão de movimento. O golpe é uma cápsula que sai do corpo do player, fica ativa por 0,2 s e acerta cada alvo uma vez. A tecla F3 (só em build de debug) mostra as áreas.
+- **Campus:** 100 × 75 tiles com o Unifor-campus-kit, montado a partir das posições relativas do mapa geral oficial (2026). Inclui:
+  - avenidas, calçadas, lagoa e estacionamento solar;
+  - 18 prédios e áreas esportivas;
+  - totens com mapa (também na tecla M);
+  - paradas do carrinho elétrico (viagem rápida);
+  - 6 encontros que pagam 8 Bits no banco e só voltam depois que uma run termina.
+- **Adaptação:** quais blocos são de cada centro (CCT, CCS, CCG, CCJ) é decisão do jogo, porque o mapa oficial não diz.
+
 ## Anti-goals
 
 - Sem multiplayer.

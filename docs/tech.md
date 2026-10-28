@@ -18,7 +18,7 @@ Nenhuma outra dependência por enquanto.
 
 - **Package manager:** nenhum (plugins vão em `addons/`)
 - **Build:** preset "Windows Desktop" em `export_presets.cfg` → `builds/ReinosDaUnifor.exe` (templates 4.7.2 instalados)
-- **Testing:** GUT (52 testes) + `tests/tools/autoplay.gd` (fluxo ponta a ponta); playtest manual para feel
+- **Testing:** GUT (68 testes) + `tests/tools/autoplay.gd` (fluxo ponta a ponta, em `--headless`) + `tests/tools/shots.gd` (capturas e medição de quadro; precisa de janela: `godot --path . -s tests/tools/shots.gd -- <pasta>`); playtest manual para feel
 - **Linting / formatting:** guia de estilo oficial do GDScript (gdtoolkit/gdformat é opcional)
 - **Asset / binary storage:** Git LFS ainda não. Reavaliar quando houver muitos assets.
 
@@ -26,7 +26,11 @@ Nenhuma outra dependência por enquanto.
 
 Raiz do projeto: `C:\Users\renpo\Downloads\Aplicacoes\G\uni-king-dooms` (é onde fica o `project.godot`).
 
-Assets: `Tiny Swords/Tiny Swords (Update 010)/` e `Tiny Swords (Free Pack)/Tiny Swords (Free Pack)/` na raiz (fora do git, pela licença). O lixo de macOS tem `.gdignore`.
+Assets:
+- `Tiny Swords/Tiny Swords (Update 010)/` e `Tiny Swords (Free Pack)/Tiny Swords (Free Pack)/` na raiz (fora do git, pela licença). O lixo de macOS tem `.gdignore`.
+- `assets/unifor/`: cópia do `unifor-campus-kit` (no git). A pasta original `unifor-campus-kit/` fica como referência, com `.gdignore` e fora do git.
+- Packs na raiz que o jogo **não usa** (Raven Fantasy Icons, FreeEnvironment, Modern Interiors, Tiny RPG 01/02) têm `.gdignore` (o Godot não importa) e ficam fora do git.
+- `docs/referencias/unifor-mapa-geral-2026.pdf`: mapa oficial usado como referência do campus (fora do git).
 
 ```
 docs/                 # design, milestones, ADRs, estado
@@ -59,7 +63,9 @@ builds/               # export Windows (fora do git)
 - **Data-driven:** itens, combos, ensinamentos, inimigos, moedas e facções são `Resource` (`.tres`) em `data/`. Adicionar conteúdo não deve exigir mexer em código.
 - **Estado global:** só no autoload `GameState` (estado, economia, reputação, save e sinais globais `enemy_killed`, `bits_changed`, `items_changed`, `notice`). Não há autoloads separados até alguém precisar.
 - **Constantes:** tuning em `scripts/constants.gd` (`class_name Constants`) ou nos `Resource`s de dados, nunca solto na lógica.
-- **Input:** ações nomeadas no Input Map (`move_*`, `attack_basic`, `attack_heavy`, `special`, `dash`, `interact`), nunca teclas cruas.
+- **Input:** ações nomeadas no Input Map (`move_*`, `attack_basic`, `attack_heavy`, `special`, `dash`, `interact`, `campus_map` (M), `debug_combat` (F3)), nunca teclas cruas. Todas com `"device": -1` (qualquer teclado/mouse).
+- **Camadas de física:** 1 mundo, 2 player, 3 inimigos (colisão de movimento), 4 hurtbox (área que recebe golpes, `Hurtbox`). O golpe do player procura só a camada 4.
+- **Campus:** planta por dados em `scenes/campus/campus_layout.gd`, montada por `scripts/world/campus_kit.gd` (autotile de 8 vizinhos a partir de `masks.json` do kit, colisão por tipo de objeto, superfícies planas com `z_index -5`, oclusão por transparência).
 - **Inspeção:** `GameState.state_to_text()` devolve um JSON do estado, para verificação por agente.
 - **Asset naming:** `kebab-case`, prefixado por reino quando for específico (`cct-robot-idle.png`).
 

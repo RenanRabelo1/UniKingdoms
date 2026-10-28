@@ -2,39 +2,39 @@
 
 ## Last updated
 
-2026-10-27 by Claude / make-game + cerebro-loop + cerebro-kernel + ponytail
+2026-10-27 by Claude / cerebro-kernel + cerebro-loop + ponytail + skills de Godot
 
 ## Current phase
 
-development, com a v1.0 entregue para os testes finais do usuário
+development, com a v1.1 (acerto no combate + campus da Unifor) entregue para os testes do usuário
 
 ## Current milestone
 
-[Milestone 03: v1.0, reino do CCT completo](milestones/03-v1-mvp-cct.md). C1–C9 verificados; falta C10 (playtest do usuário).
+[Milestone 04: v1.1](milestones/04-v1.1-combate-campus.md). Critérios verificados por automação; falta o playtest do usuário.
 
 ## Last action
 
-A v1.0 foi implementada inteira:
-- menu, customização, campus/hub, run de 12 salas, 4 inimigos e chefe;
-- ensinamentos, Bits, mercados, itens, relíquias, atlética e save/continuar;
-- sprites e UI do Tiny Swords;
-- export Windows em `builds/`.
+- Combate: `Hurtbox` separada da colisão de movimento, golpe em cápsula a partir do corpo, ativo por 0,2 s, um acerto por alvo; F3 mostra as áreas (só debug).
+- Campus 100 × 75 tiles com o Unifor-campus-kit (`assets/unifor/`), layout a partir do mapa oficial, mapa (M/totens), carrinho elétrico, 6 encontros.
+- Ações do Input Map normalizadas para `device -1`.
 
-Verificado com 52 testes GUT, autoplay ponta a ponta, capturas de tela, clique em janela real e boot do `.exe`.
+Verificado: 68 testes GUT, autoplay (com o campus), checagem de alcance (0 células presas), capturas, medição de quadro em janela, export e boot do `.exe`.
 
 ## Next step
 
-O usuário faz o playtest final seguindo o roteiro da nota do Obsidian `02-Projetos/Ativos/Reinos da Unifor - Entrega v1.md`. Ajustar o balanceamento (`data/`, `scripts/constants.gd`, `scenes/run/room.gd`) com o feedback.
+O usuário testa combate e exploração seguindo a nota do Obsidian `02-Projetos/Ativos/Reinos da Unifor - Entrega v1.1.md`. Confirmar quais blocos reais são de cada centro (CCT/CCS/CCG/CCJ) e ajustar `scenes/campus/campus_layout.gd`.
 
 ## Blockers
 
-Nenhum para a v1. Áudio e fonte dependem de assets do usuário (não bloqueiam).
+Nenhum. Áudio e fonte continuam dependendo de assets do usuário.
 
 ## Notes for next session
 
-- O editor do Godot estava aberto durante o desenvolvimento. Antes do F5, use *Projeto → Recarregar Projeto Atual*: o `project.godot` mudou (autoload, input, cena principal, clear color).
-- Os packs `Tiny Swords/` e `Tiny Swords (Free Pack)/` ficam fora do git (licença), mas o jogo depende deles na raiz do projeto.
-- Scripts rodados com `-s` compilam antes dos autoloads: não use `class_name` que dependa do `GameState` neles (veja `tests/tools/autoplay.gd`).
+- Antes do F5 no editor: *Projeto → Recarregar Projeto Atual* (o `project.godot` mudou: camada `hurtbox`, ações `campus_map`/`debug_combat`, `device -1`).
+- Packs não usados na raiz têm `.gdignore`; tire o arquivo se for usar um deles.
+- `tests/tools/shots.gd` precisa de janela (não use `--headless`). Use `--disable-vsync` para medir FPS real.
+- `Performance.TIME_PROCESS` não serve como tempo por quadro aqui; meça com `Time.get_ticks_usec` entre quadros.
+- O template de release ignora `-s`: o autoplay só roda no projeto, não no `.exe`.
+- Scripts rodados com `-s` compilam antes dos autoloads: não use `class_name` que dependa do `GameState` neles.
 - Em headless a GUI não faz picking de mouse; para checar cliques, rode com janela.
-- Telas modais pausam a árvore. Testes que esperam durante a pausa precisam de `PROCESS_MODE_ALWAYS` (veja `tests/integration/test_flow.gd`).
-- O harness do cerebro-loop (`.specs/loop/v1-mvp-cct/STATE.json`) parou por orçamento de tempo (BUDGET_TIME_EXCEEDED). Os gates foram rodados manualmente (testes, autoplay, boot, capturas).
+- Telas modais pausam a árvore. Testes que esperam durante a pausa precisam de `PROCESS_MODE_ALWAYS`.

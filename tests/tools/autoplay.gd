@@ -22,6 +22,7 @@ func _initialize() -> void:
 	await _wait(0.6)
 	_check(current_scene.name == "Campus", "campus abre")
 
+	await _campus_tour()
 	await _victory_run()
 	await _death_run()
 	await _continue_run()
@@ -29,6 +30,39 @@ func _initialize() -> void:
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(gs.save_path))
 	print("AUTOPLAY: %s" % ("OK" if failures.is_empty() else "FALHOU: " + ", ".join(failures)))
 	quit(0 if failures.is_empty() else 1)
+
+
+## Campus novo: mapa, carrinho elétrico, um encontro vencido e desmaio no campus.
+func _campus_tour() -> void:
+	var campus = current_scene
+	campus.open_map()
+	await _wait(0.3)
+	_check(_press("Fechar"), "mapa do campus abre e fecha")
+	await _wait(0.2)
+	for it in get_nodes_in_group(&"interactable"):
+		if it.prompt == "Carrinho elétrico: parada Biblioteca":
+			it.used.emit()
+	await _wait(0.3)
+	_check(_press("Lagoa"), "carrinho mostra as paradas")
+	await _wait(0.4)
+	_check(campus.player.global_position.distance_to(Vector2(1180, 3560)) < 2.0, "carrinho leva à Lagoa")
+	var bits: int = gs.profile.bits
+	campus.player.is_invincible = true
+	await _wait(0.6)
+	var enemies := campus.get_children().filter(func(n): return n.get("data") != null and n.get("hp") != null)
+	_check(enemies.size() == 4, "encontro da lagoa aparece ao chegar perto")
+	for e in enemies:
+		e.take_damage(9999)
+	await _wait(0.3)
+	_check(gs.profile.bits == bits + gs.CAMPUS_ENCOUNTER_BITS and "lagoa" in gs.profile.campus_cleared,
+		"encontro vencido paga no banco")
+	campus.player.is_invincible = false
+	campus.player.take_damage(9999)
+	await _wait(2.2)
+	_check(current_scene.name == "Campus" and current_scene.player.hp == current_scene.player.max_hp,
+		"desmaio no campus volta à Biblioteca com vida cheia")
+	_check(not current_scene.get_children().any(func(n): return n.get("id") == "lagoa"),
+		"encontro vencido não reaparece antes de uma run")
 
 
 func _victory_run() -> void:
