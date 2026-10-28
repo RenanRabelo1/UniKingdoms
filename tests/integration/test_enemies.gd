@@ -89,3 +89,36 @@ func test_kill_notifies_game_state():
 	var bug := _enemy("bug", Vector2(300, 0))
 	bug.take_damage(1000)
 	assert_signal_emitted(GameState, "enemy_killed")
+
+
+func test_hurtbox_is_separate_from_movement_collision():
+	for id in ["bug", "robo", "barril", "atletica"]:
+		var e := _enemy(id, Vector2(0, 200))
+		await wait_physics_frames(1)
+		var body: CollisionShape2D = e.get_node(^"CollisionShape2D")
+		var hb: Hurtbox = e.get_node(^"Hurtbox")
+		assert_eq(body.shape.radius, e.data.body_radius, "%s: colisão de movimento não cresceu" % id)
+		assert_eq(e.collision_layer, Constants.LAYER_ENEMIES)
+		assert_eq(hb.collision_layer, Constants.LAYER_HURTBOX)
+		assert_gt(hb.shape.radius * 2.0, body.shape.radius * 2.0, "%s: hurtbox cobre o corpo, não só os pés" % id)
+		e.free()
+
+
+## Regressão do playtest: o golpe que pega o corpo do sprite (e não os pés) precisa contar.
+func test_swing_that_reaches_the_sprite_body_hits():
+	var bug := _enemy("bug", Vector2(104, 0))
+	await wait_physics_frames(2)
+	player.aim_direction = Vector2.RIGHT
+	player.attack(&"basic")
+	assert_eq(bug.hp, bug.data.max_hp - player.weapon.basic_damage)
+
+
+func test_boss_has_body_sized_hurtbox():
+	var boss: Node2D = load("res://scenes/actors/boss.tscn").instantiate()
+	add_child_autofree(boss)
+	boss.global_position = player.global_position + Vector2(120, 0)
+	await wait_physics_frames(2)
+	var hp_before: int = boss.hp
+	player.aim_direction = Vector2.RIGHT
+	player.attack(&"basic")
+	assert_lt(boss.hp, hp_before, "o golpe no corpo do chefe conta")

@@ -13,6 +13,8 @@ const ProjectileScene := preload("res://scenes/actors/projectile.tscn")
 var hp_scale := 1.0
 var hp: int
 var target: Node2D
+## Distância máxima para perseguir o player (no campus); INF na run.
+var aggro_range := INF
 
 var _state := State.MOVE
 var _timer := 0.0
@@ -26,6 +28,7 @@ func _ready() -> void:
 	var shape := CircleShape2D.new()
 	shape.radius = data.body_radius
 	$CollisionShape2D.shape = shape
+	Hurtbox.attach(self, data.hurtbox_size, data.hurtbox_center)
 	sprite.sprite_frames = SheetFrames.build(data.animations)
 	sprite.scale = Vector2.ONE * data.sprite_scale
 	sprite.position = data.sprite_offset
@@ -46,7 +49,7 @@ func _physics_process(delta: float) -> void:
 	var dist := to.length()
 	match _state:
 		State.MOVE:
-			velocity = _desired_velocity(to, dist)
+			velocity = _desired_velocity(to, dist) if dist <= aggro_range else Vector2.ZERO
 			if dist <= data.attack_range and _cooldown <= 0.0:
 				_start_windup()
 		State.WINDUP:

@@ -14,7 +14,11 @@ extends Resource
 @export var attack_cooldown := 1.0
 @export var projectile_speed := 300.0
 @export var bits := 2
+## Colisão de movimento (pés). Não serve para receber golpes.
 @export var body_radius := 14.0
+## Área que recebe golpes (Hurtbox): largura × altura e centro, medidos no corpo visível do sprite.
+@export var hurtbox_size := Vector2(56, 70)
+@export var hurtbox_center := Vector2(0, -34)
 @export var sprite_scale := 1.0
 @export var sprite_offset := Vector2(0, -30)
 ## Formato de SheetFrames.build: precisa de "idle", "run" e "attack".

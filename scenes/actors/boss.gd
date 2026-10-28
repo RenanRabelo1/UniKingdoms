@@ -44,6 +44,8 @@ func _ready() -> void:
 	sprite.sprite_frames = SheetFrames.build(ANIMS)
 	sprite.play(&"idle")
 	telegraph.visible = false
+	# Corpo visível do Lancer (escala 1.7): ~118 × 255 px contando a lança; o tronco é menor.
+	Hurtbox.attach(self, Vector2(100, 190), Vector2(0, -95))
 	target = get_tree().get_first_node_in_group(&"player")
 
 

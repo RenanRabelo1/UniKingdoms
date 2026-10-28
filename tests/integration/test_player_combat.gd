@@ -82,3 +82,84 @@ func test_special_needs_full_meter_and_hits_area():
 	assert_eq(near.last_damage, Constants.SPECIAL_DAMAGE)
 	assert_eq(far.last_damage, 0)
 	assert_eq(player.special_meter.value, 0.0)
+
+
+## Coloca o boneco com o centro da hurtbox a `dist` px do corpo do player, na direção `dir`.
+func _dummy_body_at(dir: Vector2, dist: float) -> TrainingDummy:
+	var dummy := _dummy_at(Vector2.ZERO)
+	var hb_center: Vector2 = (dummy.get_node(^"Hurtbox") as Hurtbox).center
+	dummy.global_position = player.body_center() + dir * dist - hb_center
+	return dummy
+
+
+## Distância horizontal máxima (corpo do player → centro da hurtbox do boneco) em que o golpe encosta.
+func _max_contact() -> float:
+	return weapon.reach + weapon.hit_radius + 30.0
+
+
+func test_hits_in_all_eight_directions_and_not_behind():
+	for i in 8:
+		var dir := Vector2.RIGHT.rotated(TAU * i / 8.0)
+		var front := _dummy_body_at(dir, 70.0)
+		var behind := _dummy_body_at(-dir, 70.0)
+		await wait_physics_frames(2)
+		player.aim_direction = dir
+		await wait_seconds(weapon.basic_cooldown + 0.05)
+		assert_true(player.attack(&"basic"))
+		assert_eq(front.hits, 1, "acerta na direção %d" % i)
+		assert_eq(behind.hits, 0, "não acerta atrás na direção %d" % i)
+		front.free()
+		behind.free()
+		# Espera o golpe acabar antes de pôr os próximos bonecos (senão o arco atual os pega).
+		await wait_seconds(Constants.SWING_ACTIVE_TIME + 0.05)
+
+
+func test_reach_edge_matches_capsule():
+	var inside := _dummy_body_at(Vector2.RIGHT, _max_contact() - 6.0)
+	var outside := _dummy_body_at(Vector2.LEFT, _max_contact() + 6.0)
+	await wait_physics_frames(2)
+	player.attack(&"basic")
+	assert_eq(inside.hits, 1, "na borda do alcance, acerta")
+	player.aim_direction = Vector2.LEFT
+	await wait_seconds(weapon.basic_cooldown + 0.05)
+	player.attack(&"basic")
+	assert_eq(outside.hits, 0, "um pouco além do alcance, não acerta")
+
+
+func test_target_entering_during_active_window_is_hit_once():
+	var dummy := _dummy_body_at(Vector2.RIGHT, _max_contact() + 40.0)
+	await wait_physics_frames(2)
+	player.attack(&"basic")
+	assert_eq(dummy.hits, 0, "fora do alcance no clique")
+	await wait_seconds(Constants.SWING_ACTIVE_TIME * 0.4)
+	dummy.global_position.x -= 80.0
+	await wait_seconds(Constants.SWING_ACTIVE_TIME)
+	assert_eq(dummy.hits, 1, "entrou no arco enquanto a espada passava: um acerto só")
+
+
+func test_one_swing_never_hits_the_same_target_twice():
+	var dummy := _dummy_body_at(Vector2.RIGHT, 60.0)
+	await wait_physics_frames(2)
+	player.attack(&"heavy")
+	await wait_seconds(Constants.SWING_ACTIVE_TIME + 0.1)
+	assert_eq(dummy.hits, 1)
+
+
+func test_swing_ends_after_active_window():
+	var dummy := _dummy_body_at(Vector2.RIGHT, _max_contact() + 40.0)
+	await wait_physics_frames(2)
+	player.attack(&"basic")
+	await wait_seconds(Constants.SWING_ACTIVE_TIME + 0.05)
+	dummy.global_position.x -= 80.0
+	await wait_physics_frames(3)
+	assert_eq(dummy.hits, 0, "depois da janela ativa, o golpe acabou")
+
+
+func test_swing_follows_the_player_while_moving():
+	var dummy := _dummy_body_at(Vector2.RIGHT, _max_contact() + 30.0)
+	await wait_physics_frames(2)
+	player.attack(&"basic")
+	assert_eq(dummy.hits, 0, "fora do alcance no clique")
+	player.global_position.x += 50.0
+	await wait_physics_frames(3)
+	assert_eq(dummy.hits, 1, "o arco acompanha o player que avança durante o golpe")

@@ -41,6 +41,9 @@ func nearest_interactable() -> Interactable:
 
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"debug_combat") and OS.is_debug_build():
+		Hurtbox.debug_draw = not Hurtbox.debug_draw
+		return
 	if modal_open or player == null:
 		return
 	if event.is_action_pressed(&"pause"):
