@@ -98,7 +98,11 @@ func test_combat_room_clear_opens_door_and_gives_bits():
 	_world_controls_ignore_mouse(room)
 	await _kill_all(room)
 	assert_true(room.door_open)
-	assert_gt(room.get_children().filter(func(n): return n is Coin).size(), 0, "moedas no chão")
+	# v1.2 credita moedas ao concluir; a animação pode já ter terminado ao chegar aqui.
+	assert_gt(GameState.run.bits, 0, "recompensas creditadas antes de sair")
+	var earned: int = GameState.run.bits
+	assert_eq(Coin.settle_all(room), 0, "moedas que ainda voam não pagam novamente")
+	assert_eq(GameState.run.bits, earned)
 
 
 func test_teaching_room_spawns_professor_after_clear():

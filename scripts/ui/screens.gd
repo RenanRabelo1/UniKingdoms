@@ -38,7 +38,21 @@ static func pause(parent: Node, on_resume: Callable) -> void:
 		close(center)
 		on_resume.call()
 	UI.button(col, "Continuar", resume)
-	var hint := "A run continua do início desta sala." if GameState.has_run() else ""
+	var controls := UI.label(col, "WASD: mover · Mouse: mirar\nEsquerdo: básico · Direito: pesado\nEspaço: esquiva · Q: especial\nE: interagir · 1/2/3: itens · M: mapa\n\nEsq → esq → dir: combo\nEsquiva → ataque: golpe de avanço (+35%)", 15)
+	controls.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	GameAudio.load_preferences()
+	var audio_toggle := CheckButton.new()
+	audio_toggle.text = "Efeitos sonoros"
+	audio_toggle.button_pressed = GameAudio.enabled
+	col.add_child(audio_toggle)
+	audio_toggle.toggled.connect(func(value: bool) -> void:
+		GameAudio.set_enabled(value)
+		if value:
+			GameAudio.play(parent, &"ready")
+		else:
+			for voice in parent.get_tree().get_nodes_in_group(&"game_sfx"):
+				voice.queue_free())
+	var hint := "Combate retoma no início da sala. Salas concluídas e recompensas ficam salvas." if GameState.has_run() else ""
 	UI.button(col, "Salvar e sair para o menu", func() -> void:
 		# Na run, o save é o da entrada na sala (+ compras): sair não guarda o que foi pego depois,
 		# senão dava para farmar a mesma sala saindo e voltando.

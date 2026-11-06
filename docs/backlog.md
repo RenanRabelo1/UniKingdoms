@@ -19,10 +19,11 @@ Tudo que foi mencionado e adiado. Itens promovidos ganham ✔ e o link; itens re
 
 ## Polish & juice
 
-- [ ] Áudio: músicas e efeitos (precisa dos assets).
+- [x] Efeitos sonoros de combate/recursos sintetizados, com opção de desligar → [Milestone 05](milestones/05-v1.2-ritmo-de-combate.md).
+- [ ] Trilha musical e revisão artística do áudio.
 - [ ] Fonte com identidade do jogo (precisa do arquivo).
-- [ ] Knockback e hit-stop nos inimigos.
-- [ ] Inimigos contornam árvores, pedras e prédios (hoje só deslizam; no campus eles param de perseguir a 700 px).
+- [x] Knockback e interrupção local nos inimigos → [Milestone 05](milestones/05-v1.2-ritmo-de-combate.md). Sem congelar o input global.
+- [ ] Navegação global ao redor de prédios grandes. M05 adicionou desvio local de obstáculos pequenos; alcance de perseguição no campus continua 700 px.
 - [ ] Usar as peças de arquitetura do kit (corredores cobertos, paredes, rampas, ponte, muro, portão) e os 8 terrenos ainda não usados (quadra, pista, terra, areia, piso da biblioteca, ladrilho, piscina, gramado).
 - [ ] Salas da run com cenário do CCT (hoje: ilhas Tiny Swords).
 - [ ] Animação de ataque para cima/baixo (o Warrior só tem golpe lateral; o golpe vale em 8 direções e o flash mostra a área).

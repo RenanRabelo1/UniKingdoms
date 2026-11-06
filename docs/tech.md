@@ -18,7 +18,7 @@ Nenhuma outra dependência por enquanto.
 
 - **Package manager:** nenhum (plugins vão em `addons/`)
 - **Build:** preset "Windows Desktop" em `export_presets.cfg` → `builds/ReinosDaUnifor.exe` (templates 4.7.2 instalados)
-- **Testing:** GUT (68 testes) + `tests/tools/autoplay.gd` (fluxo ponta a ponta, em `--headless`) + `tests/tools/shots.gd` (capturas e medição de quadro; precisa de janela: `godot --path . -s tests/tools/shots.gd -- <pasta>`); playtest manual para feel
+- **Testing:** GUT (119 testes) + `tests/tools/autoplay.gd` (vitória/morte/continuar) + `tests/tools/combat_playtest.gd` (movimento e ataques reais sem invencibilidade) + `tests/tools/rhythm_review.gd` (capturas em janela). `tests/tools/shots.gd` mantém as capturas amplas e medição de quadro do campus. Playtest humano avalia feel e equilíbrio.
 - **Linting / formatting:** guia de estilo oficial do GDScript (gdtoolkit/gdformat é opcional)
 - **Asset / binary storage:** Git LFS ainda não. Reavaliar quando houver muitos assets.
 
@@ -69,7 +69,17 @@ builds/               # export Windows (fora do git)
 - **Inspeção:** `GameState.state_to_text()` devolve um JSON do estado, para verificação por agente.
 - **Asset naming:** `kebab-case`, prefixado por reino quando for específico (`cct-robot-idle.png`).
 
-## Out-of-scope dependencies
+## Sistemas da v1.2
+
+- `scripts/world/encounter_director.gd` + `encounter_data.gd` e `data/encounters/`: composição, limite de inimigos, aviso e bônus de ritmo por dados.
+- `scripts/combat/boss_data.gd` + `data/enemies/mainframe.tres`: tuning do chefe.
+- `Player.combat_status()`: esquiva, janela de avanço e próximo passo do combo para o HUD; sinais `dashed` e `combat_hit` para áudio/efeitos.
+- `GameState.room_phase()`, `checkpoint_room()` e `sync_room_player()`: fase/vida/especial, compatibilidade v1 e snapshot de entrada preservado nos saves de progresso permanente durante combate.
+- `scripts/audio/game_audio.gd`: sons originais sintetizados e cacheados; preferência de efeitos em `user://audio.cfg`; máximo de 12 vozes. Sem novo autoload.
+- `scripts/ui/campus_waypoint.gd`: direção do CCT no CanvasLayer. HUD em anchors/containers; viewport base explícito de 1152×648.
+- `builds/ReinosDaUnifor-v1.2.exe`: entrega separada da build anterior. Evidências de testes e capturas em `builds/` (fora do Git).
+
+## Out-of-scope dependencies (mantidas)
 
 - C#/.NET: GDScript basta e o usuário já conhece.
 - Frameworks de rede: o jogo não tem multiplayer.

@@ -17,6 +17,8 @@ var _decor_points: Array[Vector2] = []
 ## Desenho do mapa (totens / M): [cor, retângulo] do chão e [retângulo, nome] dos prédios.
 var map_ground: Array = []
 var map_buildings: Array = []
+var _waypoint: CampusWaypoint
+var _objective_tick := 0.0
 
 
 func _ready() -> void:
@@ -44,14 +46,36 @@ func _ready() -> void:
 	player.add_child(cam)
 	hud.room_text = "Campus · [M] mapa · Banco"
 	hud.refresh()
+	_waypoint = CampusWaypoint.new()
+	_waypoint.player = player
+	_waypoint.destination = _role_pos("cct") + Vector2(0, 70)
+	hud.add_child(_waypoint)
+	_update_campus_objective()
 	if GameState.profile.runs == 0:
-		hud.show_notice("Bem-vindo ao campus! Explore (M abre o mapa), converse com todos (E) e entre no CCT quando estiver pronto.")
+		hud.show_notice("Siga o marcador até o CCT. O carrinho elétrico perto da Biblioteca encurta o caminho. [M] abre o mapa.")
 
 
 func _process(delta: float) -> void:
 	super._process(delta)
 	if player:
 		CampusKit.update_occlusion(get_tree(), player.body_center())
+		_objective_tick -= delta
+		if _objective_tick <= 0.0:
+			_objective_tick = 0.2
+			_update_campus_objective()
+
+
+func _update_campus_objective() -> void:
+	if not is_instance_valid(_waypoint):
+		return
+	for child in get_children():
+		if child is Encounter and child.started and child.alive > 0 and player.global_position.distance_to(child.global_position) < Encounter.AGGRO_RANGE:
+			hud.set_objective("Área em disputa", "%d inimigos · +%d Bits no banco ao vencer" % [child.alive, GameState.CAMPUS_ENCOUNTER_BITS],
+				1.0 - float(child.alive) / maxi(child.enemy_ids.size(), 1))
+			_waypoint.hide()
+			return
+	_waypoint.show()
+	hud.set_objective("Próxima aula: CCT", "Siga o marcador · [M] mapa · carrinhos nas paradas")
 
 
 func _unhandled_input(event: InputEvent) -> void:

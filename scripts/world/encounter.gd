@@ -45,4 +45,5 @@ func start() -> void:
 func _on_enemy_died(_enemy: Enemy) -> void:
 	alive -= 1
 	if alive == 0:
+		GameAudio.play(self, &"clear")
 		cleared.emit(self)

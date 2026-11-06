@@ -1,5 +1,5 @@
 extends WorldController
-## Sala da run do CCT: monta a ilha, solta as ondas, dá a recompensa e abre a ponte para a próxima.
+## Sala do CCT: composições por dados, reforços anunciados e checkpoints sem prêmio duplicado.
 
 const EnemyScene := preload("res://scenes/actors/enemy.tscn")
 const BossScene := preload("res://scenes/actors/boss.tscn")
@@ -12,7 +12,6 @@ const ISLAND := Rect2i(1, 1, 16, 8)
 const AREA := Rect2(84, 84, 984, 480)
 const DOOR_X := 576.0
 const SPAWN := Vector2(576, 520)
-const WAVE_SIZE := 6
 const RELIC_CHANCE := 0.08
 const TYPE_NAMES := {"combat": "Combate", "teaching": "Ensinamento", "shop": "Mercado", "boss": "Chefe"}
 const MONK := "res://Tiny Swords (Free Pack)/Tiny Swords (Free Pack)/Units/%s Units/Monk/Idle.png"
@@ -23,8 +22,18 @@ var rng := RandomNumberGenerator.new()
 var room_index := 0
 var room_kind := "combat"
 var door_open := false
-var _waves: Array = []
+var encounter: EncounterData
+var _pending: Array[StringName] = []
 var _alive := 0
+var _announced := 0
+var _total_enemies := 0
+var _defeated := 0
+var _wave_number := 0
+var _combat_elapsed := 0.0
+var _challenge_time := 0.0
+var _bonus_earned := false
+var _resolved := false
+var _hud_second := -1
 var _gate: CollisionShape2D
 var _bridge: Sprite2D
 var _leaving := false
@@ -35,9 +44,10 @@ func _ready() -> void:
 	y_sort_enabled = true
 	if not GameState.has_run():
 		GameState.start_run()
-	rng.randomize()
 	room_index = GameState.run.room
 	room_kind = GameState.room_type()
+	rng.seed = int(GameState.run.get("seed", 0)) + room_index * 7919
+	encounter = EncounterDirector.profile_for(room_index)
 	MapBuilder.island(self, ISLAND)
 	_build_walls()
 	_build_bridge()
@@ -46,21 +56,47 @@ func _ready() -> void:
 	spawn_player(SPAWN, GameState.run.hp)
 	hud.room_text = "Sala %d/%d · %s" % [room_index + 1, GameState.ROOM_COUNT, TYPE_NAMES[room_kind]]
 	hud.refresh()
+	var checkpoint: Dictionary = GameState.run.get("room_checkpoint", {})
+	if GameState.room_phase() != "fighting":
+		_resolved = true
+		var summary: Dictionary = checkpoint.get("summary", {})
+		_bonus_earned = summary.get("bonus_earned", false)
+		_wave_number = summary.get("wave", 0)
+		_total_enemies = summary.get("total", 0)
+		_defeated = summary.get("defeated", 0)
+		_combat_elapsed = summary.get("elapsed", 0.0)
+		_challenge_time = summary.get("time_limit", 0.0)
+		if GameState.room_phase() == "reward":
+			_spawn_professor()
+		else:
+			if room_kind == "shop":
+				_spawn_merchant()
+			open_door()
+		return
 	match room_kind:
 		"shop":
 			_spawn_merchant()
 			open_door()
+			GameState.checkpoint_room(player.hp, "cleared")
 		"boss":
+			hud.set_objective("Prova final", "Observe o aviso de cada ataque e responda na recuperação.")
 			get_tree().create_timer(1.0, false).timeout.connect(_spawn_boss)
 		_:
 			_plan_waves()
-			get_tree().create_timer(0.8, false).timeout.connect(_next_wave)
+			_next_wave()
 
 
 func _process(delta: float) -> void:
 	super(delta)
+	if not _resolved and room_kind in ["combat", "teaching"] and not player.is_dead:
+		_combat_elapsed += delta
+		var second := ceili(maxf(0.0, _challenge_time - _combat_elapsed))
+		if second != _hud_second:
+			_update_objective()
 	if door_open and not _leaving and player.global_position.y < 24.0:
 		_leaving = true
+		Coin.settle_all(self)
+		GameState.run.special = player.special_meter.value
 		GameState.advance_room(player.hp)
 		GameState.go(GameState.SCENE_ROOM)
 
@@ -115,6 +151,8 @@ func _free_spot(pos: Vector2, min_dist: float) -> bool:
 
 
 func open_door() -> void:
+	if door_open:
+		return
 	door_open = true
 	for c in get_children():
 		if c is Coin:
@@ -122,40 +160,85 @@ func open_door() -> void:
 	_gate.set_deferred(&"disabled", true)
 	_bridge.visible = true
 	MapBuilder.sign_label(self, "Próxima sala ▲", Vector2(DOOR_X, 92))
+	if room_kind == "shop":
+		hud.set_objective("Pausa no mercado", "Compre itens ou siga pela ponte ao norte.")
+	else:
+		var detail := "Ponte aberta ao norte · progresso salvo"
+		if _bonus_earned:
+			detail = "+%d Bits de ritmo · %s" % [encounter.challenge_bonus, detail]
+		hud.set_objective("Sala concluída", detail, 1.0)
 
 
 # --- Combate -------------------------------------------------------------------
 
 func _plan_waves() -> void:
-	var pool := ["bug", "bug"]
-	if room_index >= 1:
-		pool.append("robo")
-	if room_index >= 3:
-		pool.append("barril")
-	var ids := []
-	for i in 3 + room_index:
-		ids.append(pool[rng.randi() % pool.size()])
-	if room_index > 0 and rng.randf() < GameState.ambush_chance():
-		for i in 2 + int(room_index >= 6):
-			ids.push_front("atletica")
+	_pending = EncounterDirector.plan(room_index, rng, GameState.ambush_chance())
+	_total_enemies = _pending.size()
+	_challenge_time = encounter.challenge_time(_total_enemies)
+	if &"atletica" in _pending:
 		GameState.notice.emit("Emboscada da %s! Faça missões para eles virarem aliados." % GameState.ATLETICA_NAME)
-	while not ids.is_empty():
-		_waves.append(ids.slice(0, WAVE_SIZE))
-		ids = ids.slice(WAVE_SIZE)
+	else:
+		GameState.notice.emit(encounter.tactic)
+	_update_objective()
 
 
 func _next_wave() -> void:
-	if _waves.is_empty():
-		_on_cleared()
+	if _resolved or player.is_dead or _announced > 0:
 		return
-	for id in _waves.pop_front():
-		spawn_enemy(ENEMIES[id], _spawn_point())
+	if _pending.is_empty():
+		if _alive == 0:
+			_on_cleared()
+		return
+	var count := EncounterDirector.reinforcement_count(_alive, _pending.size(), encounter)
+	if count == 0:
+		return
+	_wave_number += 1
+	var ids: Array[StringName] = []
+	for i in count:
+		ids.append(_pending.pop_front())
+	_announce_wave(ids)
+
+
+func _announce_wave(ids: Array[StringName]) -> void:
+	var incoming: Array[Dictionary] = []
+	var points: Array[Vector2] = []
+	for id in ids:
+		var pos := _spawn_point(points)
+		if not pos.is_finite():
+			if room_kind != "boss":
+				_pending.push_front(id)
+			continue
+		points.append(pos)
+		var marker := SpawnWarning.new()
+		marker.tint = encounter.accent
+		marker.duration = encounter.spawn_warning
+		marker.position = pos
+		add_child(marker)
+		incoming.append({"id": id, "pos": pos, "marker": marker})
+	_announced = incoming.size()
+	if incoming.is_empty():
+		if room_kind != "boss":
+			get_tree().create_timer(encounter.spawn_warning, false).timeout.connect(_next_wave)
+		return
+	_update_objective()
+	get_tree().create_timer(encounter.spawn_warning, false).timeout.connect(
+		func() -> void: _deploy_wave(incoming))
+
+
+func _deploy_wave(incoming: Array[Dictionary]) -> void:
+	for entry in incoming:
+		if is_instance_valid(entry.marker):
+			entry.marker.queue_free()
+		if not player.is_dead and not _resolved:
+			spawn_enemy(ENEMIES[entry.id], entry.pos)
+	_announced = 0
+	_update_objective()
 
 
 func spawn_enemy(data: EnemyData, pos: Vector2) -> Enemy:
 	var e: Enemy = EnemyScene.instantiate()
 	e.data = data
-	e.hp_scale = 1.0 + 0.08 * room_index
+	e.hp_scale = 1.0 + encounter.hp_per_room * room_index
 	e.died.connect(_on_enemy_died)
 	add_child(e)
 	e.global_position = pos
@@ -164,32 +247,77 @@ func spawn_enemy(data: EnemyData, pos: Vector2) -> Enemy:
 	return e
 
 
-func _spawn_point() -> Vector2:
-	var pos := Vector2.ZERO
+func _spawn_point(reserved: Array[Vector2] = []) -> Vector2:
 	for attempt in 30:
-		pos = Vector2(rng.randf_range(AREA.position.x + 30, AREA.end.x - 30),
+		var pos := Vector2(rng.randf_range(AREA.position.x + 30, AREA.end.x - 30),
 			rng.randf_range(AREA.position.y + 30, AREA.end.y - 30))
-		if pos.distance_to(player.global_position) > 260.0 and _free_spot(pos, 50.0):
-			break
-	return pos
+		if _valid_spawn(pos, reserved):
+			return pos
+	# Sorteio ruim nunca autoriza nascer dentro de obstáculo ou em cima do jogador.
+	for y in range(int(AREA.position.y + 32), int(AREA.end.y - 16), 48):
+		for x in range(int(AREA.position.x + 32), int(AREA.end.x - 16), 48):
+			var pos := Vector2(x, y)
+			if _valid_spawn(pos, reserved):
+				return pos
+	return Vector2.INF
+
+
+func _valid_spawn(pos: Vector2, reserved: Array[Vector2]) -> bool:
+	return pos.distance_to(player.global_position) > 260.0 and _free_spot(pos, 65.0) and not reserved.any(
+		func(p: Vector2) -> bool: return p.distance_to(pos) < 75.0)
 
 
 func _on_enemy_died(e: Enemy) -> void:
 	_alive -= 1
+	_defeated += 1
 	Coin.drop(self, e.global_position, e.data.bits)
-	if _alive == 0 and room_kind != "boss":
-		get_tree().create_timer(0.7, false).timeout.connect(_next_wave)
+	if room_kind != "boss":
+		_update_objective()
+		# Deferred: o sinal died chega antes de notify_kill e do heal-on-kill do player.
+		_next_wave.call_deferred()
 
 
 func _on_cleared() -> void:
-	if player.is_dead:
+	if player.is_dead or _resolved:
 		return
+	_resolved = true
+	GameAudio.play(self, &"clear")
+	_bonus_earned = _combat_elapsed <= _challenge_time
+	if _bonus_earned:
+		Coin.drop(self, player.global_position, encounter.challenge_bonus)
+		GameState.notice.emit("Ritmo excelente! +%d Bits de bônus." % encounter.challenge_bonus)
+	Coin.settle_all(self)
 	if room_kind == "teaching":
+		GameState.checkpoint_room(player.hp, "reward", encounter_state(), player.special_meter.value)
 		_spawn_professor()
 		return
 	Coin.drop(self, Vector2(DOOR_X, 300), 10 + 2 * room_index)
+	Coin.settle_all(self)
 	_give_relic(RELIC_CHANCE)
-	get_tree().create_timer(0.5, false).timeout.connect(open_door)
+	GameState.checkpoint_room(player.hp, "cleared", encounter_state(), player.special_meter.value)
+	open_door()
+
+
+func encounter_state() -> Dictionary:
+	return {"profile": String(encounter.id) if encounter else "", "wave": _wave_number,
+		"alive": _alive, "incoming": _announced, "remaining": _alive + _announced + _pending.size(),
+		"defeated": _defeated, "total": _total_enemies, "elapsed": _combat_elapsed,
+		"time_limit": _challenge_time, "bonus_earned": _bonus_earned, "resolved": _resolved}
+
+
+func _update_objective() -> void:
+	if _resolved or room_kind not in ["combat", "teaching"]:
+		return
+	_hud_second = ceili(maxf(0.0, _challenge_time - _combat_elapsed))
+	var detail := "%d/%d derrotados" % [_defeated, _total_enemies]
+	if _announced > 0:
+		detail += " · reforços chegando"
+	if _hud_second > 0:
+		detail += " · bônus +%d Bits: %ds" % [encounter.challenge_bonus, _hud_second]
+	else:
+		detail += " · elimine os restantes, sem pressa"
+	var progress := float(_defeated) / maxi(_total_enemies, 1)
+	hud.set_objective(encounter.display_name, detail, progress)
 
 
 func _give_relic(chance: float) -> void:
@@ -203,6 +331,7 @@ func _give_relic(chance: float) -> void:
 # --- Recompensas e NPCs --------------------------------------------------------
 
 func _spawn_professor() -> void:
+	hud.set_objective("Ensinamento disponível", "Fale com o professor [E] e escolha sua melhoria.", 1.0)
 	var color: String = ["Blue", "Purple", "Yellow"][rng.randi() % 3]
 	var prof := Interactable.npc({"idle": [MONK % color, 192, 192, 0, 6, 10.0, true]}, "Falar com o professor")
 	add_child(prof)
@@ -228,6 +357,8 @@ func _finish_professor(prof: Interactable) -> void:
 	prof.enabled = false
 	Fx.spawn(self, "dust", prof.global_position, 2.0)
 	prof.queue_free()
+	Coin.settle_all(self)
+	GameState.checkpoint_room(player.hp, "cleared", encounter_state(), player.special_meter.value)
 	open_door()
 
 
@@ -253,18 +384,42 @@ func _spawn_boss() -> void:
 	Fx.spawn(self, "explosion", boss.global_position, 1.5)
 	hud.show_boss(Boss.DISPLAY_NAME, Boss.MAX_HP)
 	boss.hp_changed.connect(hud.set_boss_hp)
-	boss.summon_requested.connect(func(count: int) -> void:
-		for i in count:
-			spawn_enemy(ENEMIES["bug"], _spawn_point()))
-	boss.died.connect(func(_b: Boss) -> void:
-		get_tree().create_timer(1.5, false).timeout.connect(_on_boss_defeated))
+	boss.summon_requested.connect(_on_boss_summon)
+	boss.died.connect(_on_boss_died)
 	GameState.notice.emit("O Prof. Mainframe, chefe do CCT, quer te reprovar!")
+
+
+func _on_boss_summon(count: int) -> void:
+	if _resolved or player.is_dead or _announced > 0:
+		return
+	var ids: Array[StringName] = []
+	for i in mini(count, maxi(0, encounter.max_active - _alive)):
+		ids.append(&"bug")
+	if not ids.is_empty():
+		_announce_wave(ids)
+
+
+func _on_boss_died(_boss: Boss) -> void:
+	if player.is_dead:
+		return
+	_resolved = true
+	player.is_invincible = true
+	player.set_physics_process(false)
+	player.set_process_unhandled_input(false)
+	for child in get_children():
+		if child is Enemy or child is Projectile or child is SpawnWarning:
+			child.set_physics_process(false)
+			child.queue_free()
+	_alive = 0
+	hud.set_objective("Professor derrotado", "CCT conquistado!", 1.0)
+	get_tree().create_timer(1.5, false).timeout.connect(_on_boss_defeated)
 
 
 func _on_boss_defeated() -> void:
 	if player.is_dead:
 		return
 	_give_relic(1.0)
+	Coin.settle_all(self)
 	var result := GameState.end_run(true)
 	open_modal()
 	Screens.result(self, result)

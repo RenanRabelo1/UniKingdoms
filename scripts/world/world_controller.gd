@@ -8,6 +8,8 @@ const INTERACT_RADIUS := 75.0
 var player: Player
 var hud: Hud
 var modal_open := false
+var _last_wallet := 0
+var _last_hp := 0
 
 
 func spawn_player(pos: Vector2, hp := -1) -> void:
@@ -16,10 +18,33 @@ func spawn_player(pos: Vector2, hp := -1) -> void:
 	add_child(player)
 	player.global_position = pos
 	player.setup(GameState.stats(), hp)
+	if GameState.has_run():
+		player.special_meter.add(float(GameState.run.get("special", 0.0)))
 	hud = Hud.new()
 	add_child(hud)
 	hud.bind_player(player)
 	player.died.connect(_on_player_died)
+	_last_hp = player.hp
+	_last_wallet = GameState.wallet()
+	GameAudio.load_preferences()
+	player.attacked.connect(func(kind: StringName, _combo: ComboData) -> void:
+		GameAudio.play(self, &"heavy" if kind == &"heavy" else &"swing"))
+	player.dashed.connect(func() -> void:
+		GameAudio.play(self, &"dash")
+		Fx.afterimage(self, player.sprite))
+	player.combat_hit.connect(func(strength: float, impact_position: Vector2) -> void:
+		GameAudio.play(self, &"hit", 1.0 / sqrt(strength))
+		Fx.impact(self, impact_position, strength))
+	player.special_used.connect(func() -> void: GameAudio.play(self, &"special"))
+	player.health_changed.connect(func(hp_now: int, _maximum: int) -> void:
+		if hp_now < _last_hp:
+			GameAudio.play(self, &"hurt")
+		_last_hp = hp_now)
+	GameState.bits_changed.connect(func() -> void:
+		var wallet := GameState.wallet()
+		if wallet > _last_wallet:
+			GameAudio.play(self, &"coin")
+		_last_wallet = wallet)
 
 
 func _process(_delta: float) -> void:
@@ -83,6 +108,7 @@ func use_item(slot: int) -> void:
 			var t: TeachingData = GameState.offer_teachings(1)[0]
 			apply_teaching(t)
 			hud.show_notice("%s ensinou: %s. %s" % [it.display_name, t.display_name, t.description])
+	GameState.sync_room_player(player.hp, player.special_meter.value)
 
 
 func apply_teaching(t: TeachingData) -> void:

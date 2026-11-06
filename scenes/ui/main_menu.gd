@@ -23,7 +23,7 @@ func _ready() -> void:
 	title.position = Vector2(0, 40)
 	title.size.x = 1152
 	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	var sub := UI.hud_label(layer, "Um roguelike no campus · v1.0 — Reino do CCT", 18)
+	var sub := UI.hud_label(layer, "v1.2 · Ritmo de combate · Reino do CCT", 18)
 	sub.position = Vector2(0, 112)
 	sub.size.x = 1152
 	sub.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

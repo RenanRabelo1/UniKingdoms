@@ -11,6 +11,17 @@ const DASH_DURATION := 0.15
 const DASH_COOLDOWN := 0.6
 
 const COMBO_WINDOW := 0.8
+const INPUT_BUFFER_TIME := 0.18
+const DASH_STRIKE_WINDOW := 0.3
+const DASH_STRIKE_DAMAGE_MULTIPLIER := 1.35
+const DASH_STRIKE_REACH_MULTIPLIER := 1.15
+const MIN_ATTACK_COOLDOWN := 0.1
+const MIN_DASH_COOLDOWN := 0.25
+const IMPACT_BASIC := 1.0
+const IMPACT_HEAVY := 1.7
+const IMPACT_COMBO := 2.1
+const IMPACT_DASH_STRIKE := 1.5
+const IMPACT_SPECIAL := 2.0
 
 ## Porcentagem da barra por segundo e por ponto de dano causado.
 const SPECIAL_CHARGE_PER_SECOND := 4.0

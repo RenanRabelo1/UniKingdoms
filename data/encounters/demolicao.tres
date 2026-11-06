@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EncounterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/world/encounter_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"demolicao"
+display_name = "Zona de demolição"
+tactic = "Saia dos círculos vermelhos antes de terminar o pavio."
+enemy_cycle = PackedStringArray("barril", "bug", "barril", "robo")
+accent = Color(1, 0.65, 0.3, 1)
