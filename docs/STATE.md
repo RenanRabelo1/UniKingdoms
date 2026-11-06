@@ -2,39 +2,48 @@
 
 ## Last updated
 
-2026-10-27 by Claude / make-game + cerebro-loop + cerebro-kernel + ponytail
+2026-11-06 — Codex. Skills: make-game, Godot (boas práticas, física, testes, UI, áudio, exportação), obsidian-cli. Análises paralelas de combate, inimigos e progressão.
 
 ## Current phase
 
-development, com a v1.0 entregue para os testes finais do usuário
+development — v1.2 implementada, validada e exportada; avaliação humana do feel pendente.
 
 ## Current milestone
 
-[Milestone 03: v1.0, reino do CCT completo](milestones/03-v1-mvp-cct.md). C1–C9 verificados; falta C10 (playtest do usuário).
+[Milestone 05: ritmo de combate](milestones/05-v1.2-ritmo-de-combate.md). Diagnóstico e roteiro de teste em [analise-v1.2.md](analise-v1.2.md).
 
 ## Last action
 
-A v1.0 foi implementada inteira:
-- menu, customização, campus/hub, run de 12 salas, 4 inimigos e chefe;
-- ensinamentos, Bits, mercados, itens, relíquias, atlética e save/continuar;
-- sprites e UI do Tiny Swords;
-- export Windows em `builds/`.
+- Input buffer de 180 ms, relógio de simulação, dash cancel e ataque de avanço, combos limitados e orientação no HUD.
+- Knockback/stagger, telegraphs contrastantes, robôs móveis, investida da atlética, boss com padrões e summons limitados; projéteis com varredura.
+- Três perfis de encontro, reforços anunciados, bônus opcional e menor crescimento de HP por sala.
+- Checkpoints para sala limpa/ensino, coleta de moedas idempotente, cura/especial salvos e snapshot de entrada para evitar farm via missão.
+- HUD responsivo, marcador do CCT, efeitos sonoros sintetizados e opção de desativá-los na pausa.
+- Executável novo: `builds/ReinosDaUnifor-v1.2.exe` (a build anterior foi mantida).
 
-Verificado com 52 testes GUT, autoplay ponta a ponta, capturas de tela, clique em janela real e boot do `.exe`.
+## Validation
+
+- GUT: **119/119 testes, 1.364 asserts**, 16 scripts; saída 0. Há um aviso no fixture antigo `test_enemies.gd` sobre seis filhos de efeitos ainda vivos ao encerrar o teste; sem erro de script.
+- Autoplay ponta a ponta: **OK**, vitória nas 12 salas, campus, morte e continuar sem farm.
+- Bot com input real: seed 42, três salas; seed 7, quatro salas, 18 inimigos, 29 ataques, oito combos e 90/100 HP final. Sem teleporte, dano alterado ou invencibilidade.
+- Capturas em janela: menu, campus, marcas de reforço, combate, pausa, Mainframe; execução final sem erros.
+- Export Windows e smoke headless do executável: saída 0, sem erros.
+- Campus: 25.768/25.768 células acessíveis, nenhuma presa na verificação existente.
+
+Logs e capturas locais em `builds/`; resultados red/green em `builds/validation-history/`. Sem commit ou publicação remota nesta sessão.
 
 ## Next step
 
-O usuário faz o playtest final seguindo o roteiro da nota do Obsidian `02-Projetos/Ativos/Reinos da Unifor - Entrega v1.md`. Ajustar o balanceamento (`data/`, `scripts/constants.gd`, `scenes/run/room.gd`) com o feedback.
+Playtest do usuário: testar `esq → esq → dir`, `Espaço → ataque`, leitura dos avisos e retomada de sala concluída. Ajustar dificuldade, janela do bônus e volume a partir da experiência real; não expandir antes desse retorno.
 
 ## Blockers
 
-Nenhum para a v1. Áudio e fonte dependem de assets do usuário (não bloqueiam).
+Nenhum para executar a v1.2. Navegação global do campus, trilha final, arte própria e outros reinos continuam no backlog.
 
 ## Notes for next session
 
-- O editor do Godot estava aberto durante o desenvolvimento. Antes do F5, use *Projeto → Recarregar Projeto Atual*: o `project.godot` mudou (autoload, input, cena principal, clear color).
-- Os packs `Tiny Swords/` e `Tiny Swords (Free Pack)/` ficam fora do git (licença), mas o jogo depende deles na raiz do projeto.
-- Scripts rodados com `-s` compilam antes dos autoloads: não use `class_name` que dependa do `GameState` neles (veja `tests/tools/autoplay.gd`).
-- Em headless a GUI não faz picking de mouse; para checar cliques, rode com janela.
-- Telas modais pausam a árvore. Testes que esperam durante a pausa precisam de `PROCESS_MODE_ALWAYS` (veja `tests/integration/test_flow.gd`).
-- O harness do cerebro-loop (`.specs/loop/v1-mvp-cct/STATE.json`) parou por orçamento de tempo (BUDGET_TIME_EXCEEDED). Os gates foram rodados manualmente (testes, autoplay, boot, capturas).
+- Novos scripts `class_name` exigem importar/recarregar o projeto no editor.
+- Godot GUI no Windows: use pipe ou Start-Process -Wait para aguardar e capturar exit code. Processos auxiliares em janela oculta.
+- `user://` pode ser bloqueado no sandbox; use save isolado nos testes e caminho absoluto para `--log-file`.
+- GUT `-gtest` acrescenta scripts; `-gselect` filtra. Não rodar suítes concorrentes que usem o mesmo save temporário.
+- Scripts `-s` compilam antes dos autoloads; runners usam load em runtime e evitam tipos que dependem de GameState.

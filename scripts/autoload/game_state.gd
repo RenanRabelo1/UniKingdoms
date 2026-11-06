@@ -15,6 +15,7 @@ const MISSION_REP := 25
 const MISSION_BITS := 60
 const ALLY_REP := 50
 const AMBUSH_CHANCE := 0.25
+const CAMPUS_ENCOUNTER_BITS := 8
 const COLORS := ["Blue", "Yellow", "Purple", "Black"]
 const COLOR_NAMES := {"Blue": "Azul", "Yellow": "Amarelo", "Purple": "Roxo", "Black": "Preto"}
 ## Itens usáveis na run, na ordem das teclas 1, 2 e 3.
@@ -56,6 +57,10 @@ var profile := {}
 var run := {}
 ## Resumo da última run encerrada (mostrado na tela de resultado).
 var last_result := {}
+## Último ponto seguro da run. Saves de missão não promovem loot de combate incompleto.
+var _checkpoint_run: Dictionary = {}
+var _checkpoint_stash: Dictionary = {}
+var _checkpoint_path := ""
 
 
 func _ready() -> void:
@@ -73,6 +78,8 @@ static func default_profile(color := "Blue") -> Dictionary:
 		"color": color, "bits": START_BITS, "stash": {}, "relics": [], "unlocked": [],
 		"cct_conquered": false, "reputation": 0, "mission": {}, "last_mission": "",
 		"missions_done": 0, "runs": 0, "wins": 0, "deaths": 0,
+		# Encontros do campus já vencidos; voltam a aparecer quando uma run termina (sem farm).
+		"campus_cleared": [],
 	}
 
 
@@ -80,6 +87,20 @@ func new_game(color: String) -> void:
 	profile = default_profile(color)
 	run = {}
 	save_game()
+
+
+func is_campus_cleared(id: String) -> bool:
+	return id in profile.campus_cleared
+
+
+## Encontro do campus vencido: paga no banco uma vez até a próxima run terminar.
+func clear_campus_encounter(id: String) -> void:
+	if is_campus_cleared(id):
+		return
+	profile.campus_cleared.append(id)
+	profile.bits += CAMPUS_ENCOUNTER_BITS
+	save_game()
+	bits_changed.emit()
 
 
 func has_run() -> bool:
@@ -92,11 +113,13 @@ func start_run() -> void:
 	var rng := RandomNumberGenerator.new()
 	rng.randomize()
 	run = {"room": 0, "plan": make_plan(rng), "hp": -1, "bits": 0, "teachings": [],
-		"extra": {}, "items": {}, "kills": 0}
+		"extra": {}, "items": {}, "kills": 0, "special": 0.0,
+		"seed": rng.randi(), "room_checkpoint": {}}
 	if take_from_stash("jaleco"):
 		_add_extra(&"max_hp", item("jaleco").amount)
 		notice.emit("Você vestiu o Jaleco: +%d de vida máxima nesta run." % item("jaleco").amount)
 	profile.runs += 1
+	_remember_checkpoint()
 	_check_room_mission()
 	save_game()
 
@@ -123,8 +146,36 @@ func room_type() -> String:
 func advance_room(hp: int) -> void:
 	run.hp = hp
 	run.room += 1
+	run.room_checkpoint = {}
+	_remember_checkpoint()
 	_check_room_mission()
 	save_game()
+
+
+## O combate retoma do início; sala vencida retoma na recompensa ou na ponte aberta.
+func room_phase() -> String:
+	var checkpoint: Dictionary = run.get("room_checkpoint", {})
+	if checkpoint.get("room", -1) != run.get("room", -2):
+		return "fighting"
+	return checkpoint.get("phase", "fighting")
+
+
+func checkpoint_room(hp: int, phase: String, summary: Dictionary = {}, special := -1.0) -> void:
+	if not has_run() or phase not in ["reward", "cleared"]:
+		return
+	run.hp = hp
+	if special >= 0.0:
+		run.special = clampf(special, 0.0, SpecialMeter.MAX)
+	run.room_checkpoint = {"room": run.room, "phase": phase, "summary": summary.duplicate(true)}
+	save_game()
+
+
+## Após consumir um item em sala já vencida, salva efeito e consumo na mesma transação.
+func sync_room_player(hp: int, special := -1.0) -> void:
+	var phase := room_phase()
+	if phase == "fighting":
+		return
+	checkpoint_room(hp, phase, run.room_checkpoint.get("summary", {}), special)
 
 
 ## Encerra a run. Morte perde os Bits da run; vitória guarda os Bits e conquista o CCT.
@@ -143,6 +194,7 @@ func end_run(victory: bool) -> Dictionary:
 	else:
 		profile.deaths += 1
 	run = {}
+	profile.campus_cleared = []
 	last_result = result
 	save_game()
 	bits_changed.emit()
@@ -180,7 +232,8 @@ func offer_teachings(count := 3) -> Array:
 
 
 func take_teaching(t: TeachingData) -> void:
-	run.teachings.append(String(t.id))
+	if has_run() and not String(t.id) in run.teachings:
+		run.teachings.append(String(t.id))
 
 
 func teaching(id: String) -> TeachingData:
@@ -279,7 +332,7 @@ func roll_relic(chance: float) -> RelicData:
 		return null
 	var r: RelicData = missing.pick_random()
 	profile.relics.append(String(r.id))
-	save_game()
+	save_game(true)
 	return r
 
 
@@ -335,17 +388,35 @@ func _complete_mission() -> void:
 	profile.mission = {}
 	notice.emit("Missão da %s concluída! +%d de reputação e +%d Bits no banco." % [ATLETICA_NAME, MISSION_REP, MISSION_BITS])
 	bits_changed.emit()
-	save_game()
+	save_game(true)
 
 
 # --- Save e cenas --------------------------------------------------------------
 
-func save_game() -> void:
+func save_game(preserve_combat_checkpoint := false) -> void:
 	var f := FileAccess.open(save_path, FileAccess.WRITE)
 	if f == null:
 		push_error("Não foi possível salvar em %s (%s)" % [save_path, FileAccess.get_open_error()])
 		return
-	f.store_var({"version": 1, "profile": profile, "run": run})
+	var resume_run: Dictionary = run
+	var resume_profile: Dictionary = profile
+	var preserve: bool = preserve_combat_checkpoint and has_run() and room_phase() == "fighting" \
+		and _checkpoint_path == save_path and _checkpoint_run.get("room", -1) == run.room \
+		and _checkpoint_run.get("seed", -1) == run.get("seed", -2)
+	if preserve:
+		resume_run = _checkpoint_run
+		resume_profile = profile.duplicate(true)
+		# Repetir a sala também devolve o consumível gasto nela; prêmios da missão são permanentes.
+		resume_profile.stash = _checkpoint_stash.duplicate(true)
+	f.store_var({"version": 2, "profile": resume_profile, "run": resume_run})
+	if not preserve:
+		_remember_checkpoint()
+
+
+func _remember_checkpoint() -> void:
+	_checkpoint_run = run.duplicate(true)
+	_checkpoint_stash = profile.get("stash", {}).duplicate(true)
+	_checkpoint_path = save_path
 
 
 func load_game() -> bool:
@@ -358,6 +429,15 @@ func load_game() -> bool:
 	profile = default_profile()
 	profile.merge(data.profile, true)
 	run = data.get("run", {})
+	if has_run():
+		# Saves v1 não tinham checkpoints nem semente; continuam no início da sala salva.
+		if not run.has("room_checkpoint"):
+			run.room_checkpoint = {}
+		if not run.has("seed"):
+			run.seed = 0
+		if not run.has("special"):
+			run.special = 0.0
+	_remember_checkpoint()
 	return true
 
 
@@ -375,4 +455,8 @@ func continue_game() -> void:
 
 
 func state_to_text() -> String:
-	return JSON.stringify({"profile": profile, "run": run})
+	var snapshot := {"profile": profile, "run": run}
+	var scene := get_tree().current_scene
+	if is_instance_valid(scene) and scene.has_method("encounter_state"):
+		snapshot.encounter = scene.encounter_state()
+	return JSON.stringify(snapshot)

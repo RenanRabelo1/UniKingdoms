@@ -14,4 +14,6 @@ attack_range = 44.0
 windup = 0.35
 attack_cooldown = 1.0
 bits = 2
+hurtbox_size = Vector2(56, 72)
+hurtbox_center = Vector2(0, -34)
 animations = {"idle": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png", 192, 192, 0, 7, 10.0, true], "run": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png", 192, 192, 1, 6, 12.0, true], "attack": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Torch/Purple/Torch_Purple.png", 192, 192, 2, 6, 14.0, false]}

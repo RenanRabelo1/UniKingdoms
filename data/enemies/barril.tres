@@ -16,4 +16,6 @@ attack_cooldown = 0.0
 bits = 3
 body_radius = 16.0
 sprite_offset = Vector2(0, -20)
+hurtbox_size = Vector2(48, 64)
+hurtbox_center = Vector2(0, -22)
 animations = {"idle": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Purple/Barrel_Purple.png", 128, 128, 0, 1, 1.0, true], "run": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Purple/Barrel_Purple.png", 128, 128, 4, 3, 8.0, true], "attack": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/Barrel/Purple/Barrel_Purple.png", 128, 128, 5, 1, 1.0, true, 2]}

@@ -15,4 +15,6 @@ windup = 0.55
 attack_cooldown = 2.0
 projectile_speed = 320.0
 bits = 3
+hurtbox_size = Vector2(60, 64)
+hurtbox_center = Vector2(0, -28)
 animations = {"idle": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/TNT/Purple/TNT_Purple.png", 192, 192, 0, 6, 10.0, true], "run": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/TNT/Purple/TNT_Purple.png", 192, 192, 1, 6, 12.0, true], "attack": ["res://Tiny Swords/Tiny Swords (Update 010)/Factions/Goblins/Troops/TNT/Purple/TNT_Purple.png", 192, 192, 2, 7, 12.0, false]}

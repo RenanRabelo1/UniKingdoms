@@ -38,7 +38,21 @@ static func pause(parent: Node, on_resume: Callable) -> void:
 		close(center)
 		on_resume.call()
 	UI.button(col, "Continuar", resume)
-	var hint := "A run continua do início desta sala." if GameState.has_run() else ""
+	var controls := UI.label(col, "WASD: mover · Mouse: mirar\nEsquerdo: básico · Direito: pesado\nEspaço: esquiva · Q: especial\nE: interagir · 1/2/3: itens · M: mapa\n\nEsq → esq → dir: combo\nEsquiva → ataque: golpe de avanço (+35%)", 15)
+	controls.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	GameAudio.load_preferences()
+	var audio_toggle := CheckButton.new()
+	audio_toggle.text = "Efeitos sonoros"
+	audio_toggle.button_pressed = GameAudio.enabled
+	col.add_child(audio_toggle)
+	audio_toggle.toggled.connect(func(value: bool) -> void:
+		GameAudio.set_enabled(value)
+		if value:
+			GameAudio.play(parent, &"ready")
+		else:
+			for voice in parent.get_tree().get_nodes_in_group(&"game_sfx"):
+				voice.queue_free())
+	var hint := "Combate retoma no início da sala. Salas concluídas e recompensas ficam salvas." if GameState.has_run() else ""
 	UI.button(col, "Salvar e sair para o menu", func() -> void:
 		# Na run, o save é o da entrada na sala (+ compras): sair não guarda o que foi pego depois,
 		# senão dava para farmar a mesma sala saindo e voltando.
@@ -215,3 +229,70 @@ static func mission(parent: Node, on_close: Callable) -> void:
 		on_close.call()
 	UI.button(col, "Fechar [Esc]", done)
 	_keys(center, {&"pause": done})
+
+
+## Nomes curtos para o mapa não sobrepor rótulos.
+const MAP_SHORT := {"Quadra poliesportiva": "Quadra", "Ginásio poliesportivo": "Ginásio",
+	"Centro de Convivência": "Convivência", "Teatro Celina Queiroz": "Teatro", "Quadras de tênis": "Tênis",
+	"Estádio de atletismo": "Estádio", "Prefeitura do campus": "Prefeitura", "Campo society": "Society"}
+const MAP_COLORS := {"asfalto": Color("5c5f66"), "ciclovia": Color("b5574a"), "concreto-claro": Color("d9d2c5"),
+	"piso-praca": Color("e8d9b5"), "piso-ladrilho": Color("e2c9a0"), "agua-lagoa": Color("3a8fb7"),
+	"deck-madeira": Color("a0703a")}
+
+
+## Mapa do campus (totens e tecla M): chão, prédios com nome, paradas, áreas com inimigos e o player.
+static func campus_map(parent: Node, campus: Node, on_close: Callable) -> void:
+	var center := UI.overlay(parent)
+	var col := UI.panel(center, "", 640)
+	UI.label(col, "Mapa do campus · Unifor", 20).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var world := Vector2(CampusLayout.WORLD * 64)
+	var canvas := Control.new()
+	canvas.custom_minimum_size = Vector2(600, 450)
+	canvas.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	col.add_child(canvas)
+	var k := canvas.custom_minimum_size.x / world.x
+	canvas.draw.connect(func() -> void:
+		var font := ThemeDB.fallback_font
+		canvas.draw_rect(Rect2(Vector2.ZERO, world * k), Color("6aa84f"))
+		for g in campus.map_ground:
+			canvas.draw_rect(Rect2(g[1].position * k, g[1].size * k), MAP_COLORS.get(g[0], Color.GRAY))
+		for b in campus.map_buildings:
+			var r := Rect2(b[0].position * k, b[0].size * k)
+			canvas.draw_rect(r.grow(-r.size.x * 0.1), Color("f2efe6"))
+			canvas.draw_rect(r.grow(-r.size.x * 0.1), Color("3b4a52"), false, 1.0)
+		for b in campus.map_buildings:
+			if b[1] != "":
+				var name: String = MAP_SHORT.get(b[1], b[1].split(" — ")[0].split(" (")[0].split(" · ")[0])
+				var p: Vector2 = (b[0].position + Vector2(b[0].size.x / 2.0, b[0].size.y)) * k
+				canvas.draw_string_outline(font, p + Vector2(-60, 4), name, HORIZONTAL_ALIGNMENT_CENTER, 120, 10, 3, Color.BLACK)
+				canvas.draw_string(font, p + Vector2(-60, 4), name, HORIZONTAL_ALIGNMENT_CENTER, 120, 10, Color.WHITE)
+		for s in CampusLayout.STOPS:
+			canvas.draw_rect(Rect2(s[1] * k - Vector2(5, 5), Vector2(10, 10)), Color("2a6fdb"))
+		for n in campus.get_children():
+			if n is Encounter and not n.started:
+				canvas.draw_circle(n.global_position * k, 6.0, Color(0.9, 0.15, 0.15))
+		if campus.player:
+			canvas.draw_circle(campus.player.global_position * k, 6.0, Color.WHITE)
+			canvas.draw_circle(campus.player.global_position * k, 4.0, Color(1, 0.3, 0.1)))
+	UI.label(col, "Laranja: você · azul: carrinho elétrico · vermelho: inimigos à vista", 13).horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	var done := func() -> void:
+		close(center)
+		on_close.call()
+	UI.button(col, "Fechar [Esc / M]", done)
+	_keys(center, {&"pause": done, &"campus_map": done})
+
+
+## Parada do carrinho elétrico: escolhe outra parada (on_pick recebe "" para ficar).
+static func cart_stops(parent: Node, here: String, destinations: Array, on_pick: Callable) -> void:
+	var center := UI.overlay(parent)
+	var col := UI.panel(center, "Carrinho elétrico", 420)
+	UI.label(col, "Você está na parada %s. Para onde?" % here, 15)
+	for d: String in destinations:
+		UI.button(col, d, func() -> void:
+			close(center)
+			on_pick.call(d))
+	var stay := func() -> void:
+		close(center)
+		on_pick.call("")
+	UI.button(col, "Ficar aqui [Esc]", stay)
+	_keys(center, {&"pause": stay})

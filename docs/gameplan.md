@@ -127,7 +127,31 @@ Um reino completo, o **CCT**. O detalhe está em `docs/milestones/03-v1-mvp-cct.
   - o mercado dela dá 0,4% de desconto por ponto de reputação.
 - **Save:** automático ao entrar em cada sala, comprar e mudar o perfil.
 
-## Anti-goals
+## v1.1: combate e campus da Unifor (2026-10-27)
+
+O detalhe está em `docs/milestones/04-v1.1-combate-campus.md`.
+
+- **Combate:** cada inimigo tem uma hurtbox do tamanho do corpo visível, separada da colisão de movimento. O golpe é uma cápsula que sai do corpo do player, fica ativa por 0,2 s e acerta cada alvo uma vez. A tecla F3 (só em build de debug) mostra as áreas.
+- **Campus:** 100 × 75 tiles com o Unifor-campus-kit, montado a partir das posições relativas do mapa geral oficial (2026). Inclui:
+  - avenidas, calçadas, lagoa e estacionamento solar;
+  - 18 prédios e áreas esportivas;
+  - totens com mapa (também na tecla M);
+  - paradas do carrinho elétrico (viagem rápida);
+  - 6 encontros que pagam 8 Bits no banco e só voltam depois que uma run termina.
+- **Adaptação:** quais blocos são de cada centro (CCT, CCS, CCG, CCJ) é decisão do jogo, porque o mapa oficial não diz.
+
+## v1.2: ritmo de combate (2026-11-06)
+
+Detalhes e evidências em `milestones/05-v1.2-ritmo-de-combate.md` e `analise-v1.2.md`.
+
+- Comandos antecipados ficam em buffer por 180 ms. A esquiva cancela a recuperação e prepara um ataque de avanço: +35% de dano e +15% de alcance nos 300 ms seguintes ao dash. Recargas respeitam pausa.
+- Inimigos anunciam direção/área antes de atacar; golpes empurram e interrompem inimigos comuns. Robôs circulam, a atlética investe, barris mantêm o pavio ao serem empurrados. Mainframe alterna investida e leque na segunda fase.
+- Salas usam perfis de pressão, fogo cruzado e demolição. Reforços chegam com aviso de 650 ms quando resta um inimigo, até seis ativos. Bônus opcional de 8 Bits por tempo não impede a saída se expirar. Vida dos inimigos cresce 5,5% por sala.
+- Sala concluída e ensinamento pendente têm checkpoint. Moedas são creditadas antes do portal; consumo/cura/especial de sala vencida são salvos juntos. Progresso permanente de missão não grava loot de combate que será reiniciado.
+- HUD informa combo, esquiva, especial pronto e objetivo. Campus indica direção do CCT e encontros próximos. Efeitos sonoros originais sintetizados, com controle na pausa.
+- A morte do chefe neutraliza ameaças restantes antes do resultado. Saves v1 continuam carregando.
+
+## Anti-goals (mantidos)
 
 - Sem multiplayer.
 - Sem diálogos longos: a história é conceitual, contada por ambiente, ícones e eventos.

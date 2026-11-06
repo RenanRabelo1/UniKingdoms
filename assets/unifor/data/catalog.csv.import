@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://2vc6k26j5lon"
+
+[deps]
+
+files=["res://assets/unifor/data/catalog.category.translation", "res://assets/unifor/data/catalog.file.translation", "res://assets/unifor/data/catalog.width.translation", "res://assets/unifor/data/catalog.height.translation", "res://assets/unifor/data/catalog.pivot.translation", "res://assets/unifor/data/catalog.pivot.translation", "res://assets/unifor/data/catalog.blocking.translation", "res://assets/unifor/data/catalog.godot.translation"]
+
+source_file="res://assets/unifor/data/catalog.csv"
+dest_files=["res://assets/unifor/data/catalog.category.translation", "res://assets/unifor/data/catalog.file.translation", "res://assets/unifor/data/catalog.width.translation", "res://assets/unifor/data/catalog.height.translation", "res://assets/unifor/data/catalog.pivot.translation", "res://assets/unifor/data/catalog.pivot.translation", "res://assets/unifor/data/catalog.blocking.translation", "res://assets/unifor/data/catalog.godot.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

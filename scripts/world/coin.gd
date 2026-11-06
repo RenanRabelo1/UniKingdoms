@@ -10,6 +10,8 @@ var value := 1
 ## A sala aumenta isto quando é limpa, para as moedas voarem até o player.
 var magnet_radius := MAGNET_RADIUS
 var _player: Node2D
+var _credited := false
+var _gain := 0
 
 
 func _ready() -> void:
@@ -30,9 +32,28 @@ func _process(delta: float) -> void:
 	if d < magnet_radius:
 		global_position = global_position.move_toward(_player.global_position, MAGNET_SPEED * delta)
 	if d < 20.0:
-		var gain := GameState.add_bits(value)
-		Fx.text(get_parent(), global_position, "+%d" % gain, Color(1, 0.85, 0.2))
+		credit()
+		Fx.text(get_parent(), global_position, "+%d" % _gain, Color(1, 0.85, 0.2))
 		queue_free()
+
+
+## Credita uma vez, mas mantém a moeda para terminar o voo até o player.
+func credit() -> int:
+	if _credited:
+		return 0
+	_credited = true
+	_gain = GameState.add_bits(value)
+	return _gain
+
+
+## Antes do checkpoint/portal, nenhuma moeda pode ficar para trás nem pagar duas vezes.
+static func settle_all(parent: Node) -> int:
+	var total := 0
+	for child in parent.get_children():
+		if child is Coin:
+			total += child.credit()
+			child.magnet_radius = 5000.0
+	return total
 
 
 ## Espalha `total` Bits em algumas moedas a partir de `pos`.
@@ -41,5 +62,5 @@ static func drop(parent: Node, pos: Vector2, total: int) -> void:
 	for i in count:
 		var c := Coin.new()
 		c.value = total / count + (1 if i < total % count else 0)
+		c.position = parent.to_local(pos) if parent is Node2D else pos
 		parent.add_child(c)
-		c.global_position = pos

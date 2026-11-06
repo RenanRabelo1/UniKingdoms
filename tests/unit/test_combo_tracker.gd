@@ -43,3 +43,34 @@ func test_sequence_clears_after_combo():
 	tracker.register(&"heavy", 0.0)
 	assert_not_null(tracker.register(&"heavy", 0.3))
 	assert_null(tracker.register(&"heavy", 0.6), "o golpe seguinte começa uma sequência nova")
+
+
+func test_unfinished_sequence_stays_bounded_and_still_closes_combo():
+	for i in 100:
+		tracker.register(&"basic", i * 0.1)
+	assert_lte(tracker._sequence.size(), 3, "histórico só precisa guardar o maior combo")
+	assert_not_null(tracker.register(&"heavy", 10.0), "limitar memória preserva o sufixo do combo")
+
+
+func test_progress_exposes_finisher_without_consuming_sequence():
+	tracker.register(&"basic", 0.0)
+	tracker.register(&"basic", 0.3)
+	var progress := tracker.progress(0.5)
+	assert_eq(progress.steps, 2)
+	assert_eq(progress.next_attack, &"heavy")
+	assert_almost_eq(progress.time_left, 0.6, 0.001)
+	assert_not_null(tracker.register(&"heavy", 0.6), "leitura do HUD preserva o combo")
+	assert_true(tracker.progress(0.6).is_empty())
+
+
+func test_progress_expires_without_a_new_attack():
+	tracker.register(&"heavy", 1.0)
+	assert_false(tracker.progress(1.5).is_empty())
+	assert_true(tracker.progress(1.0 + WINDOW + 0.01).is_empty())
+
+
+func test_empty_combo_never_matches():
+	var empty_combo := ComboData.new()
+	var empty_tracker := ComboTracker.new([empty_combo], WINDOW)
+	assert_null(empty_tracker.register(&"basic", 0.0))
+	assert_true(empty_tracker.progress(0.1).is_empty())

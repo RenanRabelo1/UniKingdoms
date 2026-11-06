@@ -19,6 +19,7 @@ func _ready() -> void:
 	s.position.y = -40
 	s.show_behind_parent = true
 	add_child(s)
+	Hurtbox.attach(self, Vector2(60, 100), Vector2(0, -30))
 
 
 func take_damage(amount: int, source: String = "") -> void:
